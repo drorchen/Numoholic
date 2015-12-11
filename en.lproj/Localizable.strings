@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Numoholic
+
+  Created by Dror Chen on 12/8/15.
+  Copyright © 2015 Dror Chen. All rights reserved.
+*/
+
+Level = "Level";
+level = "level";
+coming_soon = "coming soon";
+tutorial = "All you have to do is click on the numbers in ascending order as you remember them.";
+Target = "Target";

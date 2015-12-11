@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Numoholic
+
+  Created by Dror Chen on 12/8/15.
+  Copyright © 2015 Dror Chen. All rights reserved.
+*/
+
+Level = "שלב";
+level = "שלב";
+coming_soon = "בקרוב";
+tutorial = "כל שעליך לעשות הוא ללחוץ על המספרים בסדר עולה, לפי מה שאתה זוכר.";
+Target = "מטרה";

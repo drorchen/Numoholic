@@ -1,0 +1,108 @@
+
+/* Class = "UIButton"; normalTitle = "→"; ObjectID = "0H3-O3-jiy"; */
+"0H3-O3-jiy.normalTitle" = "→";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "2Zh-Le-ovN"; */
+"2Zh-Le-ovN.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "Random targets"; ObjectID = "3Yf-Hf-qqE"; */
+"3Yf-Hf-qqE.text" = "מטרות אקראיות";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "44b-Aa-Gsd"; */
+"44b-Aa-Gsd.normalTitle" = "-";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "5Pr-y2-Mss"; */
+"5Pr-y2-Mss.normalTitle" = "+";
+
+/* Class = "UIButton"; normalTitle = "בחר שלב"; ObjectID = "5W5-qE-S0K"; */
+"5W5-qE-S0K.normalTitle" = "בחר שלב";
+
+/* Class = "UIButton"; normalTitle = "שחק"; ObjectID = "6G6-NB-3ka"; */
+"6G6-NB-3ka.normalTitle" = "שחק";
+
+/* Class = "UIButton"; normalTitle = "→"; ObjectID = "6a2-Oj-jgk"; */
+"6a2-Oj-jgk.normalTitle" = "→";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "BGM-hZ-OkU"; */
+"BGM-hZ-OkU.normalTitle" = "-";
+
+/* Class = "UILabel"; text = "צור שלב"; ObjectID = "BXD-Oh-foC"; */
+"BXD-Oh-foC.text" = "צור שלב";
+
+/* Class = "UITextField"; placeholder = "שעון"; ObjectID = "D6d-Sq-CYW"; */
+"D6d-Sq-CYW.placeholder" = "שעון";
+
+/* Class = "UIButton"; normalTitle = "2"; ObjectID = "HTd-ku-juK"; */
+"HTd-ku-juK.normalTitle" = "2";
+
+/* Class = "UIButton"; normalTitle = "1"; ObjectID = "NdC-zH-Ah5"; */
+"NdC-zH-Ah5.normalTitle" = "1";
+
+/* Class = "UILabel"; text = "בחר שלב"; ObjectID = "PHu-rd-ecd"; */
+"PHu-rd-ecd.text" = "בחר שלב";
+
+/* Class = "UIButton"; normalTitle = "→"; ObjectID = "QtI-Qs-tvJ"; */
+"QtI-Qs-tvJ.normalTitle" = "→";
+
+/* Class = "UIButton"; normalTitle = "שחק"; ObjectID = "Rtz-a2-ua7"; */
+"Rtz-a2-ua7.normalTitle" = "שחק";
+
+/* Class = "UIButton"; normalTitle = "→"; ObjectID = "SGF-Mx-Hb3"; */
+"SGF-Mx-Hb3.normalTitle" = "→";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "SvT-JS-ioR"; */
+"SvT-JS-ioR.normalTitle" = "-";
+
+/* Class = "UILabel"; text = "איך משחקים"; ObjectID = "UHf-oI-dYI"; */
+"UHf-oI-dYI.text" = "איך משחקים";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "VUi-WM-kSJ"; */
+"VUi-WM-kSJ.normalTitle" = "-";
+
+/* Class = "UIButton"; normalTitle = "3"; ObjectID = "YMf-1Z-fbk"; */
+"YMf-1Z-fbk.normalTitle" = "3";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "akb-jW-6BR"; */
+"akb-jW-6BR.normalTitle" = "+";
+
+/* Class = "UIButton"; normalTitle = "→"; ObjectID = "dgd-60-UuW"; */
+"dgd-60-UuW.normalTitle" = "→";
+
+/* Class = "UIButton"; normalTitle = "צור שלב"; ObjectID = "euC-hq-fP8"; */
+"euC-hq-fP8.normalTitle" = "צור שלב";
+
+/* Class = "UIButton"; normalTitle = "איך משחקים"; ObjectID = "i0C-4d-mqx"; */
+"i0C-4d-mqx.normalTitle" = "איך משחקים";
+
+/* Class = "UIButton"; normalTitle = "→"; ObjectID = "ijo-IN-65Y"; */
+"ijo-IN-65Y.normalTitle" = "→";
+
+/* Class = "UIButton"; normalTitle = "שלב 1"; ObjectID = "ioq-J2-3Nt"; */
+"ioq-J2-3Nt.normalTitle" = "שלב 1";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "jLw-Ug-AfK"; */
+"jLw-Ug-AfK.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "שלב"; ObjectID = "kfo-uk-i62"; */
+"kfo-uk-i62.text" = "שלב";
+
+/* Class = "UITextField"; placeholder = "ציר Y"; ObjectID = "lmz-2n-xWX"; */
+"lmz-2n-xWX.placeholder" = "ציר Y";
+
+/* Class = "UIButton"; normalTitle = "הגדרות"; ObjectID = "msy-4R-ycF"; */
+"msy-4R-ycF.normalTitle" = "הגדרות";
+
+/* Class = "UITextField"; placeholder = "החלפות"; ObjectID = "oIh-4B-JfC"; */
+"oIh-4B-JfC.placeholder" = "החלפות";
+
+/* Class = "UIButton"; normalTitle = "אפס שלבים"; ObjectID = "ooE-x9-IRR"; */
+"ooE-x9-IRR.normalTitle" = "אפס שלבים";
+
+/* Class = "UITextField"; placeholder = "ציר X"; ObjectID = "viw-WF-X5z"; */
+"viw-WF-X5z.placeholder" = "ציר X";
+
+/* Class = "UILabel"; text = "הגדרות"; ObjectID = "yFX-Fl-8Fn"; */
+"yFX-Fl-8Fn.text" = "הגדרות";
+
+/* Class = "UIButton"; normalTitle = "4"; ObjectID = "zE4-Ak-yCq"; */
+"zE4-Ak-yCq.normalTitle" = "4";
