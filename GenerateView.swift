@@ -15,8 +15,12 @@ class GenerateView: NumViewController {
     @IBOutlet weak var yGridTextField: UITextField!
     @IBOutlet weak var timerTextField: UITextField!
     @IBOutlet weak var switchesTextField: UITextField!
+    @IBOutlet weak var tSwitchesTextField: UITextField!
+    @IBOutlet weak var fSwitchesTextField: UITextField!
     @IBOutlet weak var randomSwitch: UISwitch!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var generateLevelLabel: UILabel!
+    @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +28,8 @@ class GenerateView: NumViewController {
         let tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard:")
         self.view.addGestureRecognizer(tap)
         
-        backButton.layer.cornerRadius = 10
-        backButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        styleTheBackButton(backButton)
+        styleHeaderLabel(generateLevelLabel)
         playButton.layer.cornerRadius = 10
         playButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
         randomSwitch.layer.cornerRadius = 16
@@ -139,20 +143,94 @@ class GenerateView: NumViewController {
         }
     }
     
+    @IBAction func plusTSwitchesPressed(sender: AnyObject) {
+        if let num = Int(tSwitchesTextField.text!) {
+            tSwitchesTextField.text = "\(num+1)"
+        }
+            
+        else {
+            tSwitchesTextField.text = "1"
+        }
+    }
+    
+    @IBAction func minusTSwitchesPressed(sender: AnyObject) {
+        if let num = Int(tSwitchesTextField.text!) {
+            if num > 0 {
+                tSwitchesTextField.text = "\(num-1)"
+            }
+                
+            else {
+                tSwitchesTextField.text = "0"
+            }
+        }
+            
+        else {
+            tSwitchesTextField.text = "0"
+        }
+    }
+    
+    @IBAction func plusFSwitchesPressed(sender: AnyObject) {
+        if let num = Int(fSwitchesTextField.text!) {
+            fSwitchesTextField.text = "\(num+1)"
+        }
+            
+        else {
+            fSwitchesTextField.text = "1"
+        }
+    }
+    
+    @IBAction func minusFSwitchesPressed(sender: AnyObject) {
+        if let num = Int(fSwitchesTextField.text!) {
+            if num > 0 {
+                fSwitchesTextField.text = "\(num-1)"
+            }
+                
+            else {
+                fSwitchesTextField.text = "0"
+            }
+        }
+            
+        else {
+            fSwitchesTextField.text = "0"
+        }
+    }
+    
+    @IBAction func randomSwitchPressed(sender: AnyObject) {
+        if randomSwitch.on {
+            UIView.animateWithDuration(0.15, animations: {
+                self.modeSegmentedControl.alpha = 0
+            })
+        }
+        
+        else {
+            UIView.animateWithDuration(0.15, animations: {
+                self.modeSegmentedControl.alpha = 1
+            })
+        }
+    }
+    
     @IBAction func playButtonPressed(sender: AnyObject) {
         if let xGridNum = Int(xGridTextField.text!) {
             if let yGridNum = Int(yGridTextField.text!) {
                 if let timerNum = Double(timerTextField.text!) {
                     if let switchesNum = Int(switchesTextField.text!) {
-                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
-                        nextViewController.level = 0
-                        nextViewController.xGrid = xGridNum
-                        nextViewController.yGrid = yGridNum
-                        nextViewController.timer = CGFloat(timerNum)
-                        nextViewController.switches = switchesNum
-                        nextViewController.mode = randomSwitch.on ? 2 : 1
-                        navigationController?.pushViewController(nextViewController, animated: true)
+                        if let tSwitchesNum = Int(tSwitchesTextField.text!) {
+                            if let fSwitchesNum = Int(fSwitchesTextField.text!) {
+                                if randomSwitch.on || modeSegmentedControl.selectedSegmentIndex != -1 {
+                                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
+                                    nextViewController.level = 0
+                                    nextViewController.xGrid = xGridNum
+                                    nextViewController.yGrid = yGridNum
+                                    nextViewController.timer = CGFloat(timerNum)
+                                    nextViewController.switches = switchesNum
+                                    nextViewController.tSwitches = tSwitchesNum
+                                    nextViewController.fSwitches = fSwitchesNum
+                                    nextViewController.mode = randomSwitch.on ? 2 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 1 : 3
+                                    navigationController?.pushViewController(nextViewController, animated: true)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -167,6 +245,9 @@ class GenerateView: NumViewController {
         xGridTextField.resignFirstResponder()
         yGridTextField.resignFirstResponder()
         timerTextField.resignFirstResponder()
+        switchesTextField.resignFirstResponder()
+        tSwitchesTextField.resignFirstResponder()
+        fSwitchesTextField.resignFirstResponder()
     }
     
 }

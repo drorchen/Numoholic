@@ -12,22 +12,32 @@ class Game: NSObject {
     var grid: Grid!
     var gridView: UIView!
     var buttons: [UIButton]!
+    var buttonsLeft: Int!
     var currentNumber: Int!
     var startTimer: NSTimer!
     var timerInt: CGFloat!
     var switchTimes: Int!
+    var tSwitchTimes: Int!
+    var fSwitchTimes: Int!
     var switchTimer: NSTimer!
-    var mode: Int!
+    var mode: Mode!
     var target: Int!
+    var _level: Level!
+    private let concurrentSwitchesQueue = dispatch_queue_create(
+        "com.drorchen.Numoholic.switchQueue", DISPATCH_QUEUE_CONCURRENT)
     
-    init (grid: Grid, timerInt: CGFloat, switchTimes: Int, mode: Int, view: UIView) {
+    init (grid: Grid, level: Level, view: UIView) {
         super.init()
 
         self.grid = grid
-        self.timerInt = timerInt+0.3
+        self._level = level
+        self.timerInt = self._level.timer+0.3
+        self.switchTimes = self._level.switchTimes
+        self.tSwitchTimes = self._level.tSwitchTimes
+        self.fSwitchTimes = self._level.fSwitchTimes
+        self.mode = Mode(mode: self._level.mode)
         currentNumber = 0
-        self.switchTimes = switchTimes
-        self.mode = mode
+        target = self.mode.setModeTitle(self)
         
         let currentController = currentViewController()!
         
@@ -36,6 +46,7 @@ class Game: NSObject {
         
         gridView = self.grid.createGridView(currentController.view!, label: currentController.levelLabel)
         buttons = self.grid.addButtonsToGridView(gridView)
+        self.buttonsLeft = self.buttons.count
         
         setButtons()
     }
@@ -58,41 +69,100 @@ class Game: NSObject {
     }
     
     func enableAllButtons () {
-        for var i = 0; i < buttons.count; i++ {
-            buttons[i].enabled = true
-            buttons[i].enabled = true
+        for button in buttons {
+            button.enabled = true
         }
     }
     
     func disableAllButtons () {
-        for var i = 0; i < buttons.count; i++ {
-            buttons[i].enabled = false
-            buttons[i].enabled = false
+        for button in buttons {
+            button.enabled = false
         }
     }
     
-    func switchTiles () {
+    func switchTwoTiles () {
         if switchTimes > 0 && buttons.count >= 2 {
-            disableAllButtons()
-            var twoTiles = twoRandomTiles()
-            let frameOfTileOne = buttons[twoTiles[0]].frame
+            dispatch_barrier_sync(concurrentSwitchesQueue) {
+                self.disableAllButtons()
+            }
             
-            UIView.animateWithDuration(0.4, animations: {
-                self.buttons[twoTiles[0]].frame = self.buttons[twoTiles[1]].frame
-                self.buttons[twoTiles[1]].frame = frameOfTileOne
-                }, completion: { (value: Bool) in
-                    self.enableAllButtons()
-            })
-            
-            switchTimes!--
-            if switchTimes == 0 {
-                switchTimer.invalidate()
+            dispatch_barrier_sync(concurrentSwitchesQueue) {
+                self.switchTimes = self.switchTiles(self.twoRandomTiles(), counter: self.switchTimes)
+                
+                if self.switchTimes == 0 {
+                    self.switchTimer.invalidate()
+                }
             }
         }
-        
-        else {
-            switchTimer.invalidate()
+    }
+    
+    func switchThreeTiles () {
+        if tSwitchTimes > 0 && buttons.count >= 3 {
+            dispatch_barrier_sync(concurrentSwitchesQueue) {
+                self.disableAllButtons()
+            }
+            
+            dispatch_barrier_sync(concurrentSwitchesQueue) {
+                self.tSwitchTimes = self.switchTiles(self.threeRandomTiles(), counter: self.tSwitchTimes)
+            }
         }
+    
+        else {
+            switchTwoTiles()
+        }
+    }
+    
+    func switchFourTiles () {
+        if fSwitchTimes > 0 && buttons.count >= 4 {
+            dispatch_barrier_sync(concurrentSwitchesQueue) {
+                self.disableAllButtons()
+            }
+            
+            dispatch_barrier_sync(concurrentSwitchesQueue) {
+                self.fSwitchTimes = self.switchTiles(self.fourRandomTiles(), counter: self.fSwitchTimes)
+            }
+        }
+            
+        else {
+            switchThreeTiles()
+        }
+    }
+    
+    func switchTiles (tiles: [Int], var counter: Int) -> Int {
+        if counter > 0 && buttons.count >= tiles.count {
+            var framesOfTiles = [CGRect]()
+            for tile in tiles {
+                framesOfTiles.append(buttons[tile].frame)
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                UIView.animateWithDuration(0.2, animations: {
+                    for var i = 0; i < tiles.count; i++ {
+                        self.buttons[tiles[i]].backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.8)
+                    }
+                    }, completion: { (value: Bool) in
+                        UIView.animateWithDuration(0.4, animations: {
+                            for var i = 0; i < tiles.count-1; i++ {
+                                self.buttons[tiles[i]].frame = framesOfTiles[i+1]
+                            }
+                            self.buttons[tiles[tiles.count-1]].frame = framesOfTiles[0]
+                            }, completion: { (value: Bool) in
+                                self.enableAllButtons()
+                                UIView.animateWithDuration(0.2, animations: {
+                                    for button in self.buttons {
+                                        button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+                                    }
+                                })
+                        })
+                })
+            }
+            
+            
+            counter--
+            return counter
+        }
+        
+        return 0
     }
     
     func twoRandomTiles () -> [Int] {
@@ -111,8 +181,78 @@ class Game: NSObject {
         }
     }
     
+    func threeRandomTiles () -> [Int] {
+        var threeTiles = [Int]()
+        var firstTile: Int!
+        var secondTile: Int!
+        var thirdTile: Int!
+        
+        if buttons.count > 3 {
+            firstTile = Int(arc4random_uniform(UInt32(buttons.count)))
+            secondTile = Int(arc4random_uniform(UInt32(buttons.count)))
+            thirdTile = Int(arc4random_uniform(UInt32(buttons.count)))
+        }
+            
+        else {
+            firstTile = 0
+            secondTile = 1
+            thirdTile = 2
+        }
+        
+        if firstTile == secondTile || firstTile == thirdTile || secondTile == thirdTile {
+            return threeRandomTiles()
+        }
+            
+        else {
+            threeTiles.append(firstTile)
+            threeTiles.append(secondTile)
+            threeTiles.append(thirdTile)
+            return threeTiles
+        }
+    }
+    
+    func fourRandomTiles () -> [Int] {
+        var fourTiles = [Int]()
+        var firstTile: Int!
+        var secondTile: Int!
+        var thirdTile: Int!
+        var fourthTile: Int!
+        
+        if buttons.count > 4 {
+            firstTile = Int(arc4random_uniform(UInt32(buttons.count)))
+            secondTile = Int(arc4random_uniform(UInt32(buttons.count)))
+            thirdTile = Int(arc4random_uniform(UInt32(buttons.count)))
+            fourthTile = Int(arc4random_uniform(UInt32(buttons.count)))
+        }
+            
+        else {
+            firstTile = 0
+            secondTile = 1
+            thirdTile = 2
+            fourthTile = 3
+        }
+        
+        if firstTile == secondTile || firstTile == thirdTile || secondTile == thirdTile || firstTile == fourthTile || secondTile == fourthTile || thirdTile == fourthTile {
+            return fourRandomTiles()
+        }
+            
+        else {
+            fourTiles.append(firstTile)
+            fourTiles.append(secondTile)
+            fourTiles.append(thirdTile)
+            fourTiles.append(fourthTile)
+            return fourTiles
+        }
+    }
+    
     func startTheGame () {
-        switchTimer = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "switchTiles", userInfo: nil, repeats: true)
+        let delay = 1.45 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.switchFourTiles()
+            self.switchTimer = NSTimer.scheduledTimerWithTimeInterval(2.15, target: self, selector: "switchFourTiles", userInfo: nil, repeats: true)
+        }
+        
         for var i = 0; i < buttons.count; i++ {
             let button = buttons[i]
             button.enabled = true
@@ -120,14 +260,7 @@ class Game: NSObject {
             button.setTitle("", forState: UIControlState.Normal)
         }
         
-        if mode == 2 {
-            target = randomTarget()
-            currentViewController()!.targetLabel.text = "\(NSLocalizedString("Target", comment: "target")): \(target)"
-        }
-            
-        else {
-            currentViewController()!.targetLabel.text = "\(NSLocalizedString("Target", comment: "target")): 1"
-        }
+        setTarget()
     }
     
     func setButtons () {
@@ -138,75 +271,40 @@ class Game: NSObject {
         }
     }
     
-    func randomTarget () -> Int {
-        let target = Int(arc4random_uniform(UInt32(grid.x*grid.y)))+1
-        
-        var found = false
-        for var i = 0; i < buttons.count; i++ {
-            if target == buttons[i].tag {
-                found = true
+    func clickedAButton (sender: UIButton) {
+        if target == sender.tag {
+            buttons = buttons.filter() { $0 !== sender }
+            sender.enabled = false
+            sender.hidden = true
+            
+            if buttons.count == 0 {
+                nextLevel()
+            }
+                
+            else {
+                currentNumber = target
+                setTarget()
             }
         }
-        
-        if found {
-            currentViewController()?.targetLabel.text = "\(NSLocalizedString("Target", comment: "target")): \(target)"
-            return target
-        }
-        
+            
         else {
-            return randomTarget()
+            wrong()
         }
     }
     
-    func clickedAButton (sender: UIButton) {
-        if mode == 1 {
-            if currentNumber == sender.tag-1 {
-                buttons = buttons.filter() { $0 !== sender }
-                sender.removeFromSuperview()
-                
-                if buttons.count == 0 {
-                    nextLevel()
-                }
-                
-                else {
-                    currentNumber!++
-                    currentViewController()?.targetLabel.text = "\(NSLocalizedString("Target", comment: "target")): \(currentNumber+1)"
-                }
-            }
-                
-            else {
-                wrong()
-            }
-        }
-        
-        else if mode == 2 {
-            if target == sender.tag {
-                buttons = buttons.filter() { $0 !== sender }
-                sender.removeFromSuperview()
-                
-                if buttons.count == 0 {
-                    nextLevel()
-                }
-                
-                else {
-                    target = randomTarget()
-                }
-            }
-                
-            else {
-                wrong()
-            }
-        }
+    func setTarget() {
+        target = mode.newTarget(self)
+        setTitle("\(NSLocalizedString("Target", comment: "target")): \(target)")
+    }
+    
+    func setTitle(target: String) {
+        let currentController = currentViewController()
+        currentController?.levelLabel.text = "\(currentController!.getLevelLabel())\n\(target)"
     }
     
     func cheater () {
-        if startTimer != nil {
-            startTimer.invalidate()
-        }
-        
-        if switchTimer != nil {
-            switchTimer.invalidate()
-        }
+        startTimer?.invalidate()
+        switchTimer?.invalidate()
         
         if let currentController = self.currentViewController() {
             currentController.view.userInteractionEnabled = false
@@ -215,38 +313,41 @@ class Game: NSObject {
     }
     
     func wrong () {
-        let currentController = self.currentViewController()!
-        currentController.view.userInteractionEnabled = false
-        if switchTimer != nil {
-            switchTimer.invalidate()
-        }
-        
-        for var i = 0; i < buttons.count; i++ {
-            buttons[i].enabled = false
-            buttons[i].backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.8)
-            buttons[i].setTitle("\(buttons[i].tag)", forState: UIControlState.Normal)
-        }
-        
-        let delay = 0.5 * Double(NSEC_PER_SEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue()) {
-            if currentController.level > 0 {
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
-                nextViewController.level = currentController.level
-                currentController.navigationController?.pushViewController(nextViewController, animated: true)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.switchTimer?.invalidate()
+            
+            let currentController = self.currentViewController()!
+            currentController.view.userInteractionEnabled = false
+            
+            for var i = 0; i < self.buttons.count; i++ {
+                self.buttons[i].enabled = false
+                self.buttons[i].backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.8)
+                self.buttons[i].setTitle("\(self.buttons[i].tag)", forState: UIControlState.Normal)
             }
-                
-            else {
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
-                nextViewController.level = 0
-                nextViewController.xGrid = currentController.xGrid
-                nextViewController.yGrid = currentController.yGrid
-                nextViewController.timer = currentController.timer
-                nextViewController.switches = currentController.switches
-                nextViewController.mode = currentController.mode
-                currentController.navigationController?.pushViewController(nextViewController, animated: true)
+            
+            let delay = 0.5 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                if currentController.level > 0 {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
+                    nextViewController.level = currentController.level
+                    currentController.navigationController?.pushViewController(nextViewController, animated: true)
+                }
+                    
+                else {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
+                    nextViewController.level = 0
+                    nextViewController.xGrid = currentController.xGrid
+                    nextViewController.yGrid = currentController.yGrid
+                    nextViewController.timer = currentController.timer
+                    nextViewController.switches = currentController.switches
+                    nextViewController.tSwitches = currentController.tSwitches
+                    nextViewController.fSwitches = currentController.fSwitches
+                    nextViewController.mode = currentController.mode
+                    currentController.navigationController?.pushViewController(nextViewController, animated: true)
+                }
             }
         }
     }
@@ -257,8 +358,7 @@ class Game: NSObject {
         if currentController.level > 0 {
             if currentController.level == level {
                 level!++
-                NSUserDefaults.standardUserDefaults().setObject(level, forKey: "level")
-                NSUserDefaults.standardUserDefaults().synchronize()
+                saveAndEncryptUserDefaults("l", hash: "lH", item: "\(level)")
             }
             
             let delay = 0.1 * Double(NSEC_PER_SEC)

@@ -9,5 +9,11 @@
 Level = "Level";
 level = "level";
 coming_soon = "coming soon";
-tutorial = "All you have to do is click on the numbers in ascending order as you remember them.";
+tutorial = "Click on the targeted number (Most of the time the numbers are in ascending order).";
 Target = "Target";
+ASC = "Ascending Targets";
+RAND = "Random Targets";
+DESC = "Descending Targets";
+Ads_removal = "Ads removal";
+Buy = "Buy";
+Cancel = "Cancel";

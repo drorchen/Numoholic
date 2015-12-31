@@ -106,3 +106,12 @@
 
 /* Class = "UIButton"; normalTitle = "4"; ObjectID = "zE4-Ak-yCq"; */
 "zE4-Ak-yCq.normalTitle" = "4";
+
+/* Class = "UIButton"; normalTitle = "Remove Ads"; ObjectID = "BL5-td-Ogt"; */
+"BL5-td-Ogt.normalTitle" = "הסרת מודעות";
+
+/* Class = "UISegmentedControl"; RQ1-zE-VYY.segmentTitles[0] = "Ascending"; ObjectID = "RQ1-zE-VYY"; */
+"RQ1-zE-VYY.segmentTitles[0]" = "סדר עולה";
+
+/* Class = "UISegmentedControl"; RQ1-zE-VYY.segmentTitles[1] = "Descending"; ObjectID = "RQ1-zE-VYY"; */
+"RQ1-zE-VYY.segmentTitles[1]" = "סדר יורד";

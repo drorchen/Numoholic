@@ -16,6 +16,7 @@ class TutorialView: NumViewController {
     @IBOutlet weak var threeButton: UIButton!
     @IBOutlet weak var fourButton: UIButton!
     @IBOutlet weak var tutorialText: UILabel!
+    @IBOutlet weak var howToPlayLabel: UILabel!
     var number: Int!
     
     override func viewDidLoad() {
@@ -23,15 +24,19 @@ class TutorialView: NumViewController {
         
         number = 1
         
-        backButton.layer.cornerRadius = 10
-        backButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
-        oneButton.layer.cornerRadius = 10
-        twoButton.layer.cornerRadius = 10
-        threeButton.layer.cornerRadius = 10
-        fourButton.layer.cornerRadius = 10
-        tutorialText.text = NSLocalizedString("tutorial", comment: "tutorial")
+        styleTheBackButton(backButton)
+        styleHeaderLabel(howToPlayLabel)
+        oneButton.layer.cornerRadius = oneButton.frame.width/4
+        twoButton.layer.cornerRadius = twoButton.frame.width/4
+        threeButton.layer.cornerRadius = threeButton.frame.width/4
+        fourButton.layer.cornerRadius = fourButton.frame.width/4
+        tutorialText.text = "\(NSLocalizedString("tutorial", comment: "tutorial")) \(NSLocalizedString("Target", comment: "target")): 1"
         tutorialText.layoutIfNeeded()
         self.view.layoutIfNeeded()
+        tutorialText.textAlignment = NSTextAlignment.Center
+        tutorialText.font = UIFont.systemFontOfSize(self.view.frame.width/20)
+        tutorialText.adjustsFontSizeToFitWidth = false
+        tutorialText.baselineAdjustment = UIBaselineAdjustment.AlignCenters
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +50,7 @@ class TutorialView: NumViewController {
             oneButton.alpha = 0
             oneButton.enabled = false
             twoButton.enabled = true
+            tutorialText.text = "\(NSLocalizedString("tutorial", comment: "tutorial")) \(NSLocalizedString("Target", comment: "target")): 2"
         }
     }
     
@@ -55,6 +61,7 @@ class TutorialView: NumViewController {
             twoButton.alpha = 0
             twoButton.enabled = false
             threeButton.enabled = true
+            tutorialText.text = "\(NSLocalizedString("tutorial", comment: "tutorial")) \(NSLocalizedString("Target", comment: "target")): 3"
         }
     }
     
@@ -65,6 +72,7 @@ class TutorialView: NumViewController {
             threeButton.alpha = 0
             threeButton.enabled = false
             fourButton.enabled = true
+            tutorialText.text = "\(NSLocalizedString("tutorial", comment: "tutorial")) \(NSLocalizedString("Target", comment: "target")): 4"
         }
     }
     

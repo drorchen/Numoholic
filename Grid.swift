@@ -48,7 +48,7 @@ class Grid: NSObject {
     }
     
     func createGridView (view: UIView, label: UILabel) -> UIView {
-        let gridView = UIView (frame: CGRectMake(5, label.frame.maxY+50, view.frame.width-10, view.frame.height-label.frame.maxY-100))
+        let gridView = UIView (frame: CGRectMake(5, label.frame.maxY+70, view.frame.width-10, view.frame.height-label.frame.maxY-130))
         
         view.addSubview(gridView)
         return gridView
@@ -57,16 +57,17 @@ class Grid: NSObject {
     func addButtonsToGridView (gridView: UIView) -> [UIButton] {
         let width = gridView.frame.width / CGFloat(x)
         let height = gridView.frame.height / CGFloat(y)
+        let space = gridView.frame.width/121.666666666667
         
         var buttons = [UIButton]()
         
         for var i = 0; i < grid.count; i++ {
             let button = UIButton(type: UIButtonType.System)
-            button.frame = CGRectMake(CGFloat(grid[i][0])*width+3+(width-6)/2, CGFloat(grid[i][1])*height+3+(height-6)/2, 0, 0)
+            button.frame = CGRectMake(CGFloat(grid[i][0])*width+space+(width-2*space)/2, CGFloat(grid[i][1])*height+space+(height-2*space)/2, 0, 0)
             button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-            button.layer.cornerRadius = min((width-6),(height-6))/8
+            button.layer.cornerRadius = min((width-2*space),(height-2*space))/8
             button.setTitle("\(i+1)", forState: UIControlState.Normal)
-            button.titleLabel!.font = UIFont.systemFontOfSize(min((width-6),(height-6))/2.41911764705882)
+            button.titleLabel!.font = UIFont.systemFontOfSize(min((width-2*space),(height-2*space))/2.41911764705882)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.titleLabel!.adjustsFontSizeToFitWidth = true
             button.titleLabel!.baselineAdjustment = .AlignCenters
@@ -75,7 +76,7 @@ class Grid: NSObject {
             buttons.append(button)
             
             UIView.animateWithDuration(0.4, animations: {
-                button.frame = CGRectMake(CGFloat(self.grid[i][0])*width+3, CGFloat(self.grid[i][1])*height+3, width-6, height-6)
+                button.frame = CGRectMake(CGFloat(self.grid[i][0])*width+space, CGFloat(self.grid[i][1])*height+space, width-2*space, height-2*space)
             })
         }
         

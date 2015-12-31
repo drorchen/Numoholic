@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,27 +16,67 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Will get your head banged harder than beer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="vFc-CP-ZuT">
-                                <rect key="frame" x="59" y="285" width="482" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1024V2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Du5-na-dZJ">
+                                <rect key="frame" x="56" y="201" width="264" height="264"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Du5-na-dZJ" secondAttribute="height" multiplier="1:1" id="2Ff-aW-MAk"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numoholic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="KuP-uS-biQ">
+                                <rect key="frame" x="56" y="-46" width="264" height="239"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="200"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gets your head banged harder than beer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="hew-Cf-wGh">
+                                <rect key="frame" x="56" y="473" width="264" height="146"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="5Zn-ru-h7E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="61"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5Zn-ru-h7E"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.3855977042" green="0.7193788283" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="vFc-CP-ZuT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="IWn-5t-6Pk"/>
-                            <constraint firstItem="vFc-CP-ZuT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vsA-5u-BAz"/>
+                            <constraint firstItem="hew-Cf-wGh" firstAttribute="top" secondItem="Du5-na-dZJ" secondAttribute="bottom" constant="8" id="08s-V7-Krw"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6W9-JK-TVi"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="D8O-2t-yvg"/>
+                            <constraint firstItem="KuP-uS-biQ" firstAttribute="leading" secondItem="Du5-na-dZJ" secondAttribute="leading" id="II6-GA-B4X"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="109:200" id="Tea-av-qTo"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="top" secondItem="KuP-uS-biQ" secondAttribute="bottom" constant="8" id="a4Q-qM-Zmu"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="421:600" id="a98-4Q-5Td"/>
+                            <constraint firstItem="hew-Cf-wGh" firstAttribute="trailing" secondItem="Du5-na-dZJ" secondAttribute="trailing" id="dD6-2K-mML"/>
+                            <constraint firstItem="hew-Cf-wGh" firstAttribute="leading" secondItem="Du5-na-dZJ" secondAttribute="leading" id="mzA-sc-dd7"/>
+                            <constraint firstItem="KuP-uS-biQ" firstAttribute="trailing" secondItem="Du5-na-dZJ" secondAttribute="trailing" id="pNI-df-dqe"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="109:200" id="wAA-II-UYQ"/>
+                            <constraint firstItem="Du5-na-dZJ" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="421:600" id="zYA-qR-Gce"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Tea-av-qTo"/>
+                                <exclude reference="wAA-II-UYQ"/>
+                                <exclude reference="zYA-qR-Gce"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="1024V2.png" width="1024" height="1024"/>
+    </resources>
 </document>

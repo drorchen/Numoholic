@@ -15,22 +15,28 @@ class Level: NSObject {
     var timer: CGFloat!
     var level: Int
     var switchTimes: Int
+    var tSwitchTimes: Int
+    var fSwitchTimes: Int
     var mode: Int
     
     init (level: Int) {
         self.level = level
         switchTimes = 0
+        tSwitchTimes = 0
+        fSwitchTimes = 0
         mode = 1
         super.init()
     }
     
-    func createLevel (xGrid: Int, yGrid: Int, timerInt: CGFloat, switchesNum: Int, mode: Int) -> Grid {
+    func createLevel (xGrid: Int, yGrid: Int, timerInt: CGFloat, switchesNum: Int, tSwitchesNum: Int, fSwitchesNum: Int, mode: Int) -> Grid {
         switch level {
         case 0:
             x = xGrid > 6 ? 6 : xGrid
             y = yGrid > 6 ? 6 : yGrid
             timer = timer > 25 ? 25 : timerInt
             switchTimes = switchesNum
+            tSwitchTimes = tSwitchesNum
+            fSwitchTimes = fSwitchesNum
             self.mode = mode
             
             let customGrid = Grid(x: self.x, y: self.y)
@@ -58,7 +64,6 @@ class Level: NSObject {
             x = 2
             y = 3
             timer = 1.2
-            self.mode = 2
             break
             
         case 4:
@@ -94,27 +99,84 @@ class Level: NSObject {
                     difLevel = 26
                 }
                     
-                else if level >= 36 && level <= 45 {
+                else if level == 36 {
                     x = 3
                     y = 3
-                    timer = 3.8
+                    timer = 4.5
                     difLevel = 36
                     self.mode = 2
                 }
                     
-                else if level >= 46 && level <= 55 {
-                    x = 4
+                else if level >= 37 && level <= 45 {
+                    x = 3
                     y = 3
-                    timer = 6
-                    difLevel = 46
+                    timer = 3.0
+                    difLevel = 37
+                    self.mode = 3
                 }
                     
-                else if level >= 56 && level <= 65 {
+                else if level == 46 {
+                    x = 3
+                    y = 3
+                    timer = 4.0
+                    difLevel = 46
+                    switchTimes = 1
+                    self.mode = 2
+                }
+                    
+                else if level >= 47 && level <= 55 {
+                    x = 3
+                    y = 3
+                    timer = 3
+                    difLevel = 47
+                    
+                    if level >= difLevel && level <= difLevel+5 {
+                        tSwitchTimes = 1
+                    }
+                        
+                    else if level >= difLevel+6 {
+                        tSwitchTimes = 2
+                    }
+                }
+                    
+                else if level == 56 {
+                    x = 3
+                    y = 3
+                    timer = 3.5
+                    difLevel = 56
+                    tSwitchTimes = 1
+                    self.mode = 2
+                }
+                    
+                else if level >= 57 && level <= 65 {
+                    x = 3
+                    y = 3
+                    timer = 2.5
+                    difLevel = 56
+                    
+                    if level >= difLevel && level <= difLevel+5 {
+                        fSwitchTimes = 1
+                    }
+                        
+                    else if level >= difLevel+6 {
+                        fSwitchTimes = 2
+                    }
+                }
+                    
+                else if level == 66 {
+                    x = 3
+                    y = 3
+                    timer = 3
+                    difLevel = 66
+                    fSwitchTimes = 1
+                    self.mode = 2
+                }
+                    
+                else if level >= 67 && level <= 75 {
                     x = 4
                     y = 3
-                    timer = 6.8
-                    difLevel = 56
-                    self.mode = 2
+                    timer = 7.0
+                    difLevel = 66
                 }
                 
                 if level >= difLevel+4 && level <= difLevel+7 {

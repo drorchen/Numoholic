@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+import iAd
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    var adBanner: ADBannerView = ADBannerView()
     var window: UIWindow?
     var rootViewController: ViewController!
     var navigationController: UINavigationController!

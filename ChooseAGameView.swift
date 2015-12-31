@@ -29,17 +29,15 @@ class ChooseAGameView: NumViewController {
             levelButton.setTitle("\(NSLocalizedString("Level", comment: "Level")) \(level)", forState: UIControlState.Normal)
         }
         
-        backButton.layer.cornerRadius = 10
-        backButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
-        levelButton.layer.cornerRadius = 10
-        levelButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
-        chooseButton.layer.cornerRadius = 10
-        chooseButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
-        generateButton.layer.cornerRadius = 10
-        generateButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
+        styleTheBackButton(backButton)
+        styleAButton(levelButton)
+        styleAButton(chooseButton)
+        styleAButton(generateButton)
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if level > maxLevel {
             levelButton.setTitle("\(NSLocalizedString("Level", comment: "Level")) \(level) \(NSLocalizedString("coming_soon", comment: "coming soon"))", forState: UIControlState.Normal)
             levelButton.enabled = false

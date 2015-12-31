@@ -12,12 +12,13 @@ class ChooseView: NumViewController {
     
     @IBOutlet weak var levelScrollView: UIScrollView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var chooseALevelLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        levelScrollView.frame = CGRectMake(15, levelScrollView.frame.minY, self.view.frame.width-30, levelScrollView.frame.height)
+        levelScrollView.frame = CGRectMake(15, levelScrollView.frame.minY, self.view.frame.width-30, levelScrollView.frame.height-55)
         levelScrollView.scrollEnabled = true
         levelScrollView.bounces = false
         levelScrollView.showsHorizontalScrollIndicator = false
@@ -61,8 +62,8 @@ class ChooseView: NumViewController {
         
         levelScrollView.contentSize = CGSizeMake (0, height)
         
-        backButton.layer.cornerRadius = 10
-        backButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        styleTheBackButton(backButton)
+        styleHeaderLabel(chooseALevelLabel)
     }
     
     override func didReceiveMemoryWarning() {

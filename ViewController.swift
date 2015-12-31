@@ -9,9 +9,10 @@
 import UIKit
 
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-var level: Int! = NSUserDefaults.standardUserDefaults().objectForKey("level") as! Int!
+var level: Int! = getLevel()
+var removedAds: Bool! = getRemovedAds()
 var currentChooseAGameView: ChooseAGameView!
-var maxLevel = 65
+var maxLevel = 75
 
 class ViewController: NumViewController {
     
@@ -24,18 +25,17 @@ class ViewController: NumViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         if level == nil {
-            NSUserDefaults.standardUserDefaults().setObject(1, forKey: "level")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            saveAndEncryptUserDefaults("l", hash: "lH", item: "\(47)")
             level = 1
         }
         
-        playButton.layer.cornerRadius = 10
-        playButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
-        howToPlayButton.layer.cornerRadius = 10
-        howToPlayButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
-        settingsButton.layer.cornerRadius = 10
-        settingsButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
-        
+        styleAButton(playButton)
+        styleAButton(howToPlayButton)
+        styleAButton(settingsButton)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func backButtonPressed (sender: AnyObject) {
