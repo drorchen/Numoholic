@@ -25,7 +25,7 @@ class ViewController: NumViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         if level == nil {
-            saveAndEncryptUserDefaults("l", hash: "lH", item: "\(47)")
+            saveAndEncryptUserDefaults("l", hash: "lH", item: "\(1)")
             level = 1
         }
         

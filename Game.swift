@@ -23,8 +23,7 @@ class Game: NSObject {
     var mode: Mode!
     var target: Int!
     var _level: Level!
-    private let concurrentSwitchesQueue = dispatch_queue_create(
-        "com.drorchen.Numoholic.switchQueue", DISPATCH_QUEUE_CONCURRENT)
+    private let switchesGroup = dispatch_group_create()
     
     init (grid: Grid, level: Level, view: UIView) {
         super.init()
@@ -78,18 +77,24 @@ class Game: NSObject {
         for button in buttons {
             button.enabled = false
         }
+        dispatch_group_leave(switchesGroup)
     }
     
     func switchTwoTiles () {
         if switchTimes > 0 && buttons.count >= 2 {
-            dispatch_barrier_sync(concurrentSwitchesQueue) {
-                self.disableAllButtons()
-            }
+            dispatch_group_enter(switchesGroup)
+            self.disableAllButtons()
             
-            dispatch_barrier_sync(concurrentSwitchesQueue) {
-                self.switchTimes = self.switchTiles(self.twoRandomTiles(), counter: self.switchTimes)
+            dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+                if self.buttons.count >= 2 {
+                    self.switchTimes = self.switchTiles(self.twoRandomTiles(), counter: self.switchTimes)
+                    
+                    if self.switchTimes == 0 {
+                        self.switchTimer.invalidate()
+                    }
+                }
                 
-                if self.switchTimes == 0 {
+                else {
                     self.switchTimer.invalidate()
                 }
             }
@@ -98,15 +103,20 @@ class Game: NSObject {
     
     func switchThreeTiles () {
         if tSwitchTimes > 0 && buttons.count >= 3 {
-            dispatch_barrier_sync(concurrentSwitchesQueue) {
-                self.disableAllButtons()
-            }
+            dispatch_group_enter(switchesGroup)
+            self.disableAllButtons()
             
-            dispatch_barrier_sync(concurrentSwitchesQueue) {
-                self.tSwitchTimes = self.switchTiles(self.threeRandomTiles(), counter: self.tSwitchTimes)
+            dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+                if self.buttons.count >= 3 {
+                    self.tSwitchTimes = self.switchTiles(self.threeRandomTiles(), counter: self.tSwitchTimes)
+                }
+                    
+                else {
+                    self.switchTwoTiles()
+                }
             }
         }
-    
+            
         else {
             switchTwoTiles()
         }
@@ -114,12 +124,17 @@ class Game: NSObject {
     
     func switchFourTiles () {
         if fSwitchTimes > 0 && buttons.count >= 4 {
-            dispatch_barrier_sync(concurrentSwitchesQueue) {
-                self.disableAllButtons()
-            }
+            dispatch_group_enter(switchesGroup)
+            self.disableAllButtons()
             
-            dispatch_barrier_sync(concurrentSwitchesQueue) {
-                self.fSwitchTimes = self.switchTiles(self.fourRandomTiles(), counter: self.fSwitchTimes)
+            dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+                if self.buttons.count >= 4 {
+                    self.fSwitchTimes = self.switchTiles(self.fourRandomTiles(), counter: self.fSwitchTimes)
+                }
+                    
+                else {
+                    self.switchThreeTiles()
+                }
             }
         }
             

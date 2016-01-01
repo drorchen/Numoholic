@@ -19,24 +19,35 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
     @IBOutlet weak var resetLevelsButton: UIButton!
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var removeAdsButton: UIButton!
+    @IBOutlet weak var restorePurchasesButton: UIButton!
+    @IBOutlet weak var temporaryConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        productIDs.append("numoholic.removeAdsInApp")
-        requestProductInfo()
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-        
         removeAdsButton.setTitle("Loading...", forState: UIControlState.Normal)
+        restorePurchasesButton.setTitle("Loading...", forState: UIControlState.Normal)
         removeAdsButton.enabled = false
+        restorePurchasesButton.enabled = false
         
         if removedAds! {
+            temporaryConstraint.constant = -removeAdsButton.frame.height
             removeAdsButton.hidden = true
+            restorePurchasesButton.hidden = true
+            removeAdsButton.setTitle("", forState: UIControlState.Normal)
+            restorePurchasesButton.setTitle("", forState: UIControlState.Normal)
+        }
+        
+        else {
+            productIDs.append("numoholic.removeAdsInApp")
+            requestProductInfo()
+            SKPaymentQueue.defaultQueue().addTransactionObserver(self)
         }
         
         styleTheBackButton(backButton)
         styleAButton(resetLevelsButton)
         styleAButton(removeAdsButton)
+        styleAButton(restorePurchasesButton)
         styleHeaderLabel(settingsLabel)
     }
     
@@ -85,27 +96,55 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
         }
         
         removeAdsButton.enabled = true
+        restorePurchasesButton.enabled = true
         removeAdsButton.setTitle("Remove Ads", forState: UIControlState.Normal)
+        restorePurchasesButton.setTitle("Restore Purchases", forState: UIControlState.Normal)
     }
     
     func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions as [SKPaymentTransaction] {
             switch transaction.transactionState {
-            case SKPaymentTransactionState.Purchased:
+            case SKPaymentTransactionState.Purchased, SKPaymentTransactionState.Restored:
                 print("Transaction completed successfully.")
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                 transactionInProgress = false
                 saveAndEncryptUserDefaults("a", hash: "aH", item: "true")
                 removedAds = true
-                
+                break
                 
             case SKPaymentTransactionState.Failed:
                 print("Transaction Failed");
+                
+                if #available(iOS 8.0, *) {
+                    let alert = UIAlertController(title: "", message: "Transaction Failed", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let doneAction: UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+                    }
+                    
+                    alert.addAction(doneAction)
+                    
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
+                }
+                    
+                else {
+                    let alert = UIAlertView()
+                    alert.delegate = view
+                    alert.title = ""
+                    alert.message = "Transaction Failed"
+                    alert.addButtonWithTitle("Ok")
+                    alert.show()
+                }
+                
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                 transactionInProgress = false
+                break
                 
             default:
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                 print(transaction.transactionState.rawValue)
+                break
             }
         }
     }
@@ -150,6 +189,13 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
             alert.addButtonWithTitle(NSLocalizedString("Cancel", comment: "Cancel"))
             alert.cancelButtonIndex = 1
             alert.showInView(self.view)
+        }
+    }
+    
+    @IBAction func restorePurchasesButtonPressed(sender: UIButton) {
+        if (SKPaymentQueue.canMakePayments()) {
+            sender.enabled = false
+            SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
         }
     }
     
