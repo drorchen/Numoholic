@@ -71,6 +71,7 @@ class Game: NSObject {
         for button in buttons {
             button.enabled = true
         }
+        dispatch_group_leave(switchesGroup)
     }
     
     func disableAllButtons () {
@@ -81,65 +82,77 @@ class Game: NSObject {
     }
     
     func switchTwoTiles () {
-        if switchTimes > 0 && buttons.count >= 2 {
-            dispatch_group_enter(switchesGroup)
-            self.disableAllButtons()
-            
-            dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
-                if self.buttons.count >= 2 {
-                    self.switchTimes = self.switchTiles(self.twoRandomTiles(), counter: self.switchTimes)
-                    
-                    if self.switchTimes == 0 {
+        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+            if self.switchTimes > 0 && self.buttons.count >= 2 {
+                dispatch_group_enter(self.switchesGroup)
+                self.disableAllButtons()
+                
+                dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
+                    if self.buttons.count >= 2 {
+                        self.switchTimes = self.switchTiles(self.twoRandomTiles(), counter: self.switchTimes)
+                        
+                        if self.switchTimes == 0 {
+                            self.switchTimer.invalidate()
+                        }
+                    }
+                        
+                    else {
+                        dispatch_group_enter(self.switchesGroup)
+                        self.enableAllButtons()
                         self.switchTimer.invalidate()
                     }
-                }
-                
-                else {
-                    self.switchTimer.invalidate()
                 }
             }
         }
     }
     
     func switchThreeTiles () {
-        if tSwitchTimes > 0 && buttons.count >= 3 {
-            dispatch_group_enter(switchesGroup)
-            self.disableAllButtons()
-            
-            dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
-                if self.buttons.count >= 3 {
-                    self.tSwitchTimes = self.switchTiles(self.threeRandomTiles(), counter: self.tSwitchTimes)
-                }
-                    
-                else {
-                    self.switchTwoTiles()
+        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+            if self.tSwitchTimes > 0 && self.buttons.count >= 3 {
+                dispatch_group_enter(self.switchesGroup)
+                self.disableAllButtons()
+                
+                dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
+                    if self.buttons.count >= 3 {
+                        self.tSwitchTimes = self.switchTiles(self.threeRandomTiles(), counter: self.tSwitchTimes)
+                    }
+                        
+                    else {
+                        dispatch_group_enter(self.switchesGroup)
+                        self.enableAllButtons()
+                        self.switchTwoTiles()
+                    }
                 }
             }
-        }
-            
-        else {
-            switchTwoTiles()
+                
+            else {
+                self.switchTwoTiles()
+            }
         }
     }
     
     func switchFourTiles () {
-        if fSwitchTimes > 0 && buttons.count >= 4 {
-            dispatch_group_enter(switchesGroup)
-            self.disableAllButtons()
-            
-            dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
-                if self.buttons.count >= 4 {
-                    self.fSwitchTimes = self.switchTiles(self.fourRandomTiles(), counter: self.fSwitchTimes)
-                }
-                    
-                else {
-                    self.switchThreeTiles()
+        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+            if self.fSwitchTimes > 0 && self.buttons.count >= 4 {
+                dispatch_group_enter(self.switchesGroup)
+                self.disableAllButtons()
+                
+                dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
+                    if self.buttons.count >= 4 {
+                        self.fSwitchTimes = self.switchTiles(self.fourRandomTiles(), counter: self.fSwitchTimes)
+                    }
+                        
+                    else {
+                        dispatch_group_enter(self.switchesGroup)
+                        self.enableAllButtons()
+                        self.switchThreeTiles()
+                    }
                 }
             }
-        }
-            
-        else {
-            switchThreeTiles()
+                
+            else {
+                self.switchThreeTiles()
+            }
         }
     }
     
@@ -162,6 +175,7 @@ class Game: NSObject {
                             }
                             self.buttons[tiles[tiles.count-1]].frame = framesOfTiles[0]
                             }, completion: { (value: Bool) in
+                                dispatch_group_enter(self.switchesGroup)
                                 self.enableAllButtons()
                                 UIView.animateWithDuration(0.2, animations: {
                                     for button in self.buttons {

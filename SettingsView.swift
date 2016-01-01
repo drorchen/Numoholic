@@ -25,8 +25,8 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        removeAdsButton.setTitle("Loading...", forState: UIControlState.Normal)
-        restorePurchasesButton.setTitle("Loading...", forState: UIControlState.Normal)
+        removeAdsButton.setTitle("\(NSLocalizedString("Loading", comment: "Loading"))...", forState: UIControlState.Normal)
+        restorePurchasesButton.setTitle("\(NSLocalizedString("Loading", comment: "Loading"))...", forState: UIControlState.Normal)
         removeAdsButton.enabled = false
         restorePurchasesButton.enabled = false
         
@@ -97,8 +97,8 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
         
         removeAdsButton.enabled = true
         restorePurchasesButton.enabled = true
-        removeAdsButton.setTitle("Remove Ads", forState: UIControlState.Normal)
-        restorePurchasesButton.setTitle("Restore Purchases", forState: UIControlState.Normal)
+        removeAdsButton.setTitle(NSLocalizedString("Remove_Ads", comment: "Remove Ads"), forState: UIControlState.Normal)
+        restorePurchasesButton.setTitle(NSLocalizedString("Restore_Purchases", comment: "Restore Purchases"), forState: UIControlState.Normal)
     }
     
     func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -116,9 +116,9 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
                 print("Transaction Failed");
                 
                 if #available(iOS 8.0, *) {
-                    let alert = UIAlertController(title: "", message: "Transaction Failed", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "", message: NSLocalizedString("Transaction_Failed", comment: "Transaction Failed"), preferredStyle: UIAlertControllerStyle.Alert)
                     
-                    let doneAction: UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+                    let doneAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Default) { (alertAction) -> Void in
                     }
                     
                     alert.addAction(doneAction)
@@ -132,8 +132,8 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
                     let alert = UIAlertView()
                     alert.delegate = view
                     alert.title = ""
-                    alert.message = "Transaction Failed"
-                    alert.addButtonWithTitle("Ok")
+                    alert.message = NSLocalizedString("Transaction_Failed", comment: "Transaction Failed")
+                    alert.addButtonWithTitle(NSLocalizedString("Ok", comment: "Ok"))
                     alert.show()
                 }
                 
@@ -142,7 +142,6 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
                 break
                 
             default:
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                 print(transaction.transactionState.rawValue)
                 break
             }
