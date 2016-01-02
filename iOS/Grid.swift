@@ -54,7 +54,7 @@ class Grid: NSObject {
         return gridView
     }
     
-    func addButtonsToGridView (gridView: UIView) -> [UIButton] {
+    func addButtonsToGridView (gridView: UIView, spacingTargets: Bool) -> [UIButton] {
         let width = gridView.frame.width / CGFloat(x)
         let height = gridView.frame.height / CGFloat(y)
         let space = gridView.frame.width/121.666666666667
@@ -66,7 +66,7 @@ class Grid: NSObject {
             button.frame = CGRectMake(CGFloat(grid[i][0])*width+space+(width-2*space)/2, CGFloat(grid[i][1])*height+space+(height-2*space)/2, 0, 0)
             button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
             button.layer.cornerRadius = min((width-2*space),(height-2*space))/8
-            button.setTitle("\(i+1)", forState: UIControlState.Normal)
+            button.setTitle("\(buttonTitle(spacingTargets, buttons: buttons))", forState: UIControlState.Normal)
             button.titleLabel!.font = UIFont.systemFontOfSize(min((width-2*space),(height-2*space))/2.41911764705882)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.titleLabel!.adjustsFontSizeToFitWidth = true
@@ -81,5 +81,20 @@ class Grid: NSObject {
         }
         
         return buttons
+    }
+    
+    func buttonTitle (random: Bool, buttons: [UIButton]) -> Int {
+        if !random {
+            return buttons.count+1
+        }
+        
+        let num = Int(arc4random_uniform(UInt32(grid.count*10)))+1
+        let checkIfExist = buttons.filter() { $0.titleLabel!.text == "\(num)" }
+        
+        if checkIfExist.count == 0 {
+            return num
+        }
+        
+        return buttonTitle(true, buttons: buttons)
     }
 }

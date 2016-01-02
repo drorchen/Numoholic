@@ -382,7 +382,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUi-WM-kSJ">
-                                <rect key="frame" x="70" y="284" width="47" height="34"/>
+                                <rect key="frame" x="70" y="317" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VUi-WM-kSJ" secondAttribute="height" multiplier="1:1" id="dUc-4c-dJX"/>
@@ -400,7 +400,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pr-y2-Mss">
-                                <rect key="frame" x="257" y="284" width="47" height="34"/>
+                                <rect key="frame" x="257" y="317" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -410,7 +410,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGM-hZ-OkU">
-                                <rect key="frame" x="70" y="317" width="47" height="34"/>
+                                <rect key="frame" x="70" y="350" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -420,7 +420,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akb-jW-6BR">
-                                <rect key="frame" x="257" y="317" width="47" height="34"/>
+                                <rect key="frame" x="257" y="350" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,7 +430,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44b-Aa-Gsd">
-                                <rect key="frame" x="70" y="350" width="47" height="34"/>
+                                <rect key="frame" x="70" y="383" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -440,7 +440,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLw-Ug-AfK">
-                                <rect key="frame" x="257" y="350" width="47" height="34"/>
+                                <rect key="frame" x="257" y="383" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -450,13 +450,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Timer" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6d-Sq-CYW">
-                                <rect key="frame" x="117" y="350" width="140" height="34"/>
+                                <rect key="frame" x="117" y="383" width="140" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6G6-NB-3ka">
-                                <rect key="frame" x="70" y="488" width="234" height="34"/>
+                                <rect key="frame" x="70" y="521" width="234" height="34"/>
                                 <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -466,19 +466,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Y Grid" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lmz-2n-xWX">
-                                <rect key="frame" x="117" y="317" width="140" height="34"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="X Grid" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viw-WF-X5z">
-                                <rect key="frame" x="117" y="284" width="140" height="34"/>
+                                <rect key="frame" x="117" y="350" width="140" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvT-JS-ioR">
-                                <rect key="frame" x="70" y="383" width="47" height="34"/>
+                                <rect key="frame" x="70" y="416" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -488,7 +482,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-Le-ovN">
-                                <rect key="frame" x="257" y="383" width="47" height="34"/>
+                                <rect key="frame" x="257" y="416" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -498,13 +492,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Switch two tiles" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oIh-4B-JfC">
-                                <rect key="frame" x="117" y="383" width="140" height="34"/>
+                                <rect key="frame" x="117" y="416" width="140" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b76-6f-Msm">
-                                <rect key="frame" x="70" y="416" width="47" height="34"/>
+                                <rect key="frame" x="70" y="449" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -514,7 +508,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxq-e8-3Uq">
-                                <rect key="frame" x="257" y="416" width="47" height="34"/>
+                                <rect key="frame" x="257" y="449" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -524,13 +518,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Switch three tiles" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r74-K4-pTM">
-                                <rect key="frame" x="117" y="416" width="140" height="34"/>
+                                <rect key="frame" x="117" y="449" width="140" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kZw-Dh-DAi">
-                                <rect key="frame" x="70" y="245" width="51" height="31"/>
+                                <rect key="frame" x="70" y="239" width="51" height="31"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kZw-Dh-DAi" secondAttribute="height" multiplier="49:31" id="8hg-of-fNf"/>
@@ -541,17 +535,35 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="randomSwitchPressed:" destination="330-xt-k4z" eventType="valueChanged" id="JtX-4z-wrd"/>
+                                    <action selector="randomTargetsSwitchPressed:" destination="330-xt-k4z" eventType="valueChanged" id="76H-eB-NOM"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random targets" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Yf-Hf-qqE">
-                                <rect key="frame" x="127" y="245" width="177" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random targets" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Yf-Hf-qqE">
+                                <rect key="frame" x="127" y="239" width="177" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Iq-iK-Vhd">
+                                <rect key="frame" x="70" y="278" width="51" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Iq-iK-Vhd" secondAttribute="height" multiplier="49:31" id="Woj-kP-xg7"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Woj-kP-xg7"/>
+                                    </mask>
+                                </variation>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random numbers" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fg3-Oa-vUs">
+                                <rect key="frame" x="127" y="278" width="177" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RQ1-zE-VYY">
-                                <rect key="frame" x="70" y="209" width="234" height="29"/>
+                                <rect key="frame" x="70" y="203" width="234" height="29"/>
                                 <segments>
                                     <segment title="Ascending"/>
                                     <segment title="Descending"/>
@@ -559,7 +571,7 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7K-P5-7Cj">
-                                <rect key="frame" x="70" y="449" width="47" height="34"/>
+                                <rect key="frame" x="70" y="482" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -569,7 +581,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNK-50-omu">
-                                <rect key="frame" x="257" y="449" width="47" height="34"/>
+                                <rect key="frame" x="257" y="482" width="47" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -579,7 +591,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Switch four tiles" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DY8-pV-akZ">
-                                <rect key="frame" x="117" y="449" width="140" height="34"/>
+                                <rect key="frame" x="117" y="482" width="140" height="34"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="X Grid" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viw-WF-X5z">
+                                <rect key="frame" x="117" y="317" width="140" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -591,6 +609,7 @@
                             <constraint firstItem="viw-WF-X5z" firstAttribute="centerY" secondItem="5Pr-y2-Mss" secondAttribute="centerY" id="2D6-ta-pic"/>
                             <constraint firstItem="jLw-Ug-AfK" firstAttribute="width" secondItem="44b-Aa-Gsd" secondAttribute="width" id="2n9-nN-9Eu"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="centerY" secondItem="akb-jW-6BR" secondAttribute="centerY" id="2nF-N9-Uul"/>
+                            <constraint firstItem="viw-WF-X5z" firstAttribute="centerY" secondItem="2SN-e9-DJm" secondAttribute="centerY" id="2vF-D2-afc"/>
                             <constraint firstItem="BXD-Oh-foC" firstAttribute="top" secondItem="ijo-IN-65Y" secondAttribute="bottom" id="32g-aV-TcS"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="width" secondItem="D6d-Sq-CYW" secondAttribute="width" id="3AD-SM-sKJ"/>
                             <constraint firstItem="viw-WF-X5z" firstAttribute="top" secondItem="RQ1-zE-VYY" secondAttribute="bottom" constant="8" id="3En-Lk-hGC"/>
@@ -610,8 +629,10 @@
                             <constraint firstItem="VUi-WM-kSJ" firstAttribute="width" secondItem="5Pr-y2-Mss" secondAttribute="width" id="9zp-7B-yyM"/>
                             <constraint firstItem="r74-K4-pTM" firstAttribute="top" secondItem="oIh-4B-JfC" secondAttribute="bottom" constant="-1" id="AYw-cm-Eu0"/>
                             <constraint firstItem="6G6-NB-3ka" firstAttribute="top" secondItem="r74-K4-pTM" secondAttribute="bottom" constant="5" id="AsX-J3-Olj"/>
+                            <constraint firstItem="Fg3-Oa-vUs" firstAttribute="trailing" secondItem="3Yf-Hf-qqE" secondAttribute="trailing" id="AwA-8Y-or2"/>
                             <constraint firstItem="cxq-e8-3Uq" firstAttribute="height" secondItem="2Zh-Le-ovN" secondAttribute="height" id="CbX-fK-oJ8"/>
                             <constraint firstItem="viw-WF-X5z" firstAttribute="centerX" secondItem="lmz-2n-xWX" secondAttribute="centerX" id="EaD-dT-tGx"/>
+                            <constraint firstItem="Fg3-Oa-vUs" firstAttribute="height" secondItem="1Iq-iK-Vhd" secondAttribute="height" id="F3G-t5-JBa"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="leading" secondItem="BGM-hZ-OkU" secondAttribute="trailing" id="Fvi-WY-E1r"/>
                             <constraint firstItem="6G6-NB-3ka" firstAttribute="centerX" secondItem="2SN-e9-DJm" secondAttribute="centerX" id="GQW-Q7-SsH"/>
                             <constraint firstItem="3Yf-Hf-qqE" firstAttribute="trailing" secondItem="5Pr-y2-Mss" secondAttribute="trailing" id="H8d-mB-OQg"/>
@@ -619,6 +640,7 @@
                             <constraint firstItem="3Yf-Hf-qqE" firstAttribute="height" secondItem="kZw-Dh-DAi" secondAttribute="height" id="He3-LS-HoQ"/>
                             <constraint firstItem="44b-Aa-Gsd" firstAttribute="height" secondItem="BGM-hZ-OkU" secondAttribute="height" id="Hot-B5-apF"/>
                             <constraint firstItem="BGM-hZ-OkU" firstAttribute="centerX" secondItem="44b-Aa-Gsd" secondAttribute="centerX" id="IBc-lr-kQa"/>
+                            <constraint firstItem="1Iq-iK-Vhd" firstAttribute="leading" secondItem="kZw-Dh-DAi" secondAttribute="leading" id="IGa-7e-nMy"/>
                             <constraint firstItem="6G6-NB-3ka" firstAttribute="top" secondItem="DY8-pV-akZ" secondAttribute="bottom" constant="5" id="IPv-ow-yJ7"/>
                             <constraint firstItem="DY8-pV-akZ" firstAttribute="centerY" secondItem="QNK-50-omu" secondAttribute="centerY" id="IsE-RW-9V4"/>
                             <constraint firstItem="BXD-Oh-foC" firstAttribute="leading" secondItem="2SN-e9-DJm" secondAttribute="leadingMargin" constant="-20" id="Jh6-Nc-5X3"/>
@@ -629,19 +651,23 @@
                             <constraint firstItem="akb-jW-6BR" firstAttribute="centerX" secondItem="jLw-Ug-AfK" secondAttribute="centerX" id="MoV-UM-IfP"/>
                             <constraint firstItem="viw-WF-X5z" firstAttribute="height" secondItem="VUi-WM-kSJ" secondAttribute="height" id="PKx-zo-7BO"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="height" secondItem="akb-jW-6BR" secondAttribute="height" id="PP0-im-SQN"/>
+                            <constraint firstItem="viw-WF-X5z" firstAttribute="top" secondItem="Fg3-Oa-vUs" secondAttribute="bottom" constant="8" id="PeY-9l-3Xw"/>
                             <constraint firstItem="DY8-pV-akZ" firstAttribute="centerX" secondItem="r74-K4-pTM" secondAttribute="centerX" id="Pqp-sX-Q03"/>
                             <constraint firstItem="oIh-4B-JfC" firstAttribute="height" secondItem="D6d-Sq-CYW" secondAttribute="height" id="Qwm-qE-nHF"/>
                             <constraint firstItem="oIh-4B-JfC" firstAttribute="centerY" secondItem="SvT-JS-ioR" secondAttribute="centerY" id="Rmt-6X-pI6"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="centerY" secondItem="2SN-e9-DJm" secondAttribute="centerY" id="SYL-Si-u6y"/>
                             <constraint firstItem="viw-WF-X5z" firstAttribute="width" secondItem="2SN-e9-DJm" secondAttribute="width" multiplier="0.2" id="Ser-eP-X7G"/>
                             <constraint firstItem="viw-WF-X5z" firstAttribute="centerY" secondItem="VUi-WM-kSJ" secondAttribute="centerY" id="Sla-wa-FAd"/>
+                            <constraint firstItem="Fg3-Oa-vUs" firstAttribute="leading" secondItem="1Iq-iK-Vhd" secondAttribute="trailing" constant="8" id="T0O-71-AJr"/>
                             <constraint firstItem="D6d-Sq-CYW" firstAttribute="height" secondItem="jLw-Ug-AfK" secondAttribute="height" id="U1c-4Q-LzH"/>
+                            <constraint firstItem="Fg3-Oa-vUs" firstAttribute="bottom" secondItem="1Iq-iK-Vhd" secondAttribute="bottom" id="UjE-fD-3WV"/>
                             <constraint firstItem="DY8-pV-akZ" firstAttribute="height" secondItem="r74-K4-pTM" secondAttribute="height" id="Uk7-We-HeU"/>
                             <constraint firstItem="viw-WF-X5z" firstAttribute="height" secondItem="5Pr-y2-Mss" secondAttribute="height" id="VFE-Nj-ozu"/>
                             <constraint firstItem="akb-jW-6BR" firstAttribute="width" secondItem="jLw-Ug-AfK" secondAttribute="width" id="VPK-ty-sX7"/>
                             <constraint firstItem="6G6-NB-3ka" firstAttribute="top" secondItem="D6d-Sq-CYW" secondAttribute="bottom" constant="5" id="VYe-hd-X4c"/>
                             <constraint firstItem="DY8-pV-akZ" firstAttribute="centerY" secondItem="w7K-P5-7Cj" secondAttribute="centerY" id="Vdx-Lc-sQZ"/>
                             <constraint firstItem="QNK-50-omu" firstAttribute="height" secondItem="cxq-e8-3Uq" secondAttribute="height" id="WDJ-cO-daW"/>
+                            <constraint firstItem="1Iq-iK-Vhd" firstAttribute="leading" secondItem="VUi-WM-kSJ" secondAttribute="leading" id="WRq-bx-oqE"/>
                             <constraint firstItem="r74-K4-pTM" firstAttribute="centerY" secondItem="cxq-e8-3Uq" secondAttribute="centerY" id="XMb-ch-Yfr"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="centerX" secondItem="D6d-Sq-CYW" secondAttribute="centerX" id="XVh-kh-lz0"/>
                             <constraint firstItem="2Zh-Le-ovN" firstAttribute="height" secondItem="SvT-JS-ioR" secondAttribute="height" id="XWi-dA-HNB"/>
@@ -666,6 +692,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="BXD-Oh-foC" secondAttribute="trailing" constant="-20" id="giG-Qj-5Ax"/>
                             <constraint firstItem="lmz-2n-xWX" firstAttribute="top" secondItem="viw-WF-X5z" secondAttribute="bottom" constant="-1" id="gtz-31-rGV"/>
                             <constraint firstItem="QNK-50-omu" firstAttribute="height" secondItem="w7K-P5-7Cj" secondAttribute="height" id="hRg-92-2xw"/>
+                            <constraint firstItem="Fg3-Oa-vUs" firstAttribute="trailing" secondItem="5Pr-y2-Mss" secondAttribute="trailing" id="j9t-gt-ouL"/>
                             <constraint firstItem="5Pr-y2-Mss" firstAttribute="width" secondItem="akb-jW-6BR" secondAttribute="width" id="jds-CW-SAH"/>
                             <constraint firstItem="D6d-Sq-CYW" firstAttribute="top" secondItem="lmz-2n-xWX" secondAttribute="bottom" constant="-1" id="kCN-9B-de1"/>
                             <constraint firstItem="ijo-IN-65Y" firstAttribute="top" secondItem="McC-uP-2q4" secondAttribute="bottom" constant="5" id="kEf-wl-IJW"/>
@@ -702,6 +729,7 @@
                             <constraint firstItem="r74-K4-pTM" firstAttribute="centerX" secondItem="oIh-4B-JfC" secondAttribute="centerX" id="w36-G7-422"/>
                             <constraint firstItem="DY8-pV-akZ" firstAttribute="leading" secondItem="r74-K4-pTM" secondAttribute="leading" id="xsq-NS-OKw"/>
                             <constraint firstItem="r74-K4-pTM" firstAttribute="leading" secondItem="b76-6f-Msm" secondAttribute="trailing" id="z07-vG-lC5"/>
+                            <constraint firstItem="Fg3-Oa-vUs" firstAttribute="top" secondItem="3Yf-Hf-qqE" secondAttribute="bottom" constant="8" id="z5X-Xe-h9S"/>
                             <constraint firstItem="6G6-NB-3ka" firstAttribute="leading" secondItem="44b-Aa-Gsd" secondAttribute="leading" id="zyZ-vO-Mty"/>
                             <constraint firstItem="2Zh-Le-ovN" firstAttribute="width" secondItem="jLw-Ug-AfK" secondAttribute="width" id="zyg-TF-ZvC"/>
                         </constraints>
@@ -709,7 +737,9 @@
                             <mask key="constraints">
                                 <exclude reference="lq6-7U-KSD"/>
                                 <exclude reference="pZ3-Ni-0x5"/>
+                                <exclude reference="aJr-Rb-Wdr"/>
                                 <exclude reference="9Oj-hF-4KN"/>
+                                <exclude reference="H8d-mB-OQg"/>
                                 <exclude reference="r7G-x8-r41"/>
                                 <exclude reference="sgr-Yb-DCK"/>
                                 <exclude reference="21o-WM-iy4"/>
@@ -717,6 +747,8 @@
                                 <exclude reference="3En-Lk-hGC"/>
                                 <exclude reference="Ser-eP-X7G"/>
                                 <exclude reference="abZ-J6-teH"/>
+                                <exclude reference="vTE-cJ-HC2"/>
+                                <exclude reference="SYL-Si-u6y"/>
                                 <exclude reference="Hot-B5-apF"/>
                                 <exclude reference="l8H-wT-DuH"/>
                                 <exclude reference="AsX-J3-Olj"/>
@@ -735,7 +767,8 @@
                         <outlet property="generateLevelLabel" destination="BXD-Oh-foC" id="gfi-Fn-kIQ"/>
                         <outlet property="modeSegmentedControl" destination="RQ1-zE-VYY" id="Mlk-64-zJ5"/>
                         <outlet property="playButton" destination="6G6-NB-3ka" id="GpW-vJ-qb3"/>
-                        <outlet property="randomSwitch" destination="kZw-Dh-DAi" id="zNd-hd-PLh"/>
+                        <outlet property="randomNumbersSwitch" destination="1Iq-iK-Vhd" id="Fn2-o2-T02"/>
+                        <outlet property="randomTargetsSwitch" destination="kZw-Dh-DAi" id="bXS-i5-YNy"/>
                         <outlet property="switchesTextField" destination="oIh-4B-JfC" id="aTr-Jd-8lw"/>
                         <outlet property="tSwitchesTextField" destination="r74-K4-pTM" id="j16-34-Ci6"/>
                         <outlet property="timerTextField" destination="D6d-Sq-CYW" id="TIm-YY-rxC"/>

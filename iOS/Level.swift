@@ -173,10 +173,45 @@ class Level: NSObject {
                 }
                     
                 else if level >= 67 && level <= 75 {
+                    x = 3
+                    y = 3
+                    timer = 3.5
+                    difLevel = 66
+                    tSwitchTimes = 1
+                    self.mode = 4
+                }
+                    
+                else if level == 76 {
+                    x = 3
+                    y = 3
+                    timer = 4.0
+                    difLevel = 76
+                    self.mode = 5
+                }
+                    
+                else if level >= 77 && level <= 85 {
+                    x = 3
+                    y = 3
+                    timer = 3.0
+                    difLevel = 76
+                    fSwitchTimes = 1
+                    self.mode = 6
+                }
+                    
+                else if level == 86 {
+                    x = 3
+                    y = 3
+                    timer = 4.5
+                    difLevel = 76
+                    switchTimes = 1
+                    self.mode = 5
+                }
+                    
+                else if level >= 87 && level <= 95 {
                     x = 4
                     y = 3
                     timer = 7.0
-                    difLevel = 66
+                    difLevel = 86
                 }
                 
                 if level >= difLevel+4 && level <= difLevel+7 {

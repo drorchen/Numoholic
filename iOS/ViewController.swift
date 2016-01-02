@@ -12,7 +12,7 @@ let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 var level: Int! = getLevel()
 var removedAds: Bool! = getRemovedAds()
 var currentChooseAGameView: ChooseAGameView!
-var maxLevel = 75
+var maxLevel = 95
 
 class ViewController: NumViewController {
     

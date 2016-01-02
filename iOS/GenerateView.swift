@@ -17,7 +17,8 @@ class GenerateView: NumViewController {
     @IBOutlet weak var switchesTextField: UITextField!
     @IBOutlet weak var tSwitchesTextField: UITextField!
     @IBOutlet weak var fSwitchesTextField: UITextField!
-    @IBOutlet weak var randomSwitch: UISwitch!
+    @IBOutlet weak var randomTargetsSwitch: UISwitch!
+    @IBOutlet weak var randomNumbersSwitch: UISwitch!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var generateLevelLabel: UILabel!
     @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
@@ -32,7 +33,8 @@ class GenerateView: NumViewController {
         styleHeaderLabel(generateLevelLabel)
         playButton.layer.cornerRadius = 10
         playButton.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14)
-        randomSwitch.layer.cornerRadius = 16
+        randomTargetsSwitch.layer.cornerRadius = 16
+        randomNumbersSwitch.layer.cornerRadius = 16
     }
     
     override func didReceiveMemoryWarning() {
@@ -195,13 +197,13 @@ class GenerateView: NumViewController {
         }
     }
     
-    @IBAction func randomSwitchPressed(sender: AnyObject) {
-        if randomSwitch.on {
+    @IBAction func randomTargetsSwitchPressed(sender: AnyObject) {
+        if randomTargetsSwitch.on {
             UIView.animateWithDuration(0.15, animations: {
                 self.modeSegmentedControl.alpha = 0
             })
         }
-        
+            
         else {
             UIView.animateWithDuration(0.15, animations: {
                 self.modeSegmentedControl.alpha = 1
@@ -216,7 +218,7 @@ class GenerateView: NumViewController {
                     if let switchesNum = Int(switchesTextField.text!) {
                         if let tSwitchesNum = Int(tSwitchesTextField.text!) {
                             if let fSwitchesNum = Int(fSwitchesTextField.text!) {
-                                if randomSwitch.on || modeSegmentedControl.selectedSegmentIndex != -1 {
+                                if randomTargetsSwitch.on || modeSegmentedControl.selectedSegmentIndex != -1 {
                                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                                     let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
                                     nextViewController.level = 0
@@ -226,7 +228,15 @@ class GenerateView: NumViewController {
                                     nextViewController.switches = switchesNum
                                     nextViewController.tSwitches = tSwitchesNum
                                     nextViewController.fSwitches = fSwitchesNum
-                                    nextViewController.mode = randomSwitch.on ? 2 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 1 : 3
+                                    
+                                    if randomNumbersSwitch.on {
+                                        nextViewController.mode = randomTargetsSwitch.on ? 5 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 4 : 6
+                                    }
+                                    
+                                    else {
+                                        nextViewController.mode = randomTargetsSwitch.on ? 2 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 1 : 3
+                                    }
+                                    
                                     navigationController?.pushViewController(nextViewController, animated: true)
                                 }
                             }

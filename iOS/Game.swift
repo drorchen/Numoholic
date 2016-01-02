@@ -44,7 +44,7 @@ class Game: NSObject {
         startTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "reduceTimerByOne", userInfo: nil, repeats: true)
         
         gridView = self.grid.createGridView(currentController.view!, label: currentController.levelLabel)
-        buttons = self.grid.addButtonsToGridView(gridView)
+        buttons = self.grid.addButtonsToGridView(gridView, spacingTargets: mode.spacingTargets())
         self.buttonsLeft = self.buttons.count
         
         setButtons()
