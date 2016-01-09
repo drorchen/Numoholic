@@ -8,6 +8,8 @@
 
 import UIKit
 import iAd
+import AVFoundation
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -16,9 +18,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rootViewController: ViewController!
     var navigationController: UINavigationController!
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let backgroundMusic = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("BackgroundMusic", ofType: "mp3")!)
+        
+        do {
+            player = try AVAudioPlayer(contentsOfURL: backgroundMusic)
+            player.numberOfLoops = -1
+            musicOn = getMusic()
+            
+            if musicOn == nil {
+                musicOn = false
+                toggleMusic()
+            }
+            
+            if musicOn! {
+                player.play()
+            }
+        }
+        catch {
+            print(error)
+        }
         
         return true
     }

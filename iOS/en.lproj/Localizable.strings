@@ -22,3 +22,5 @@ Restore_Purchases = "Restore Purchases";
 Transaction_Failed = "Transaction Failed";
 Ok = "Ok";
 Loading = "Loading";
+Turn_Music_Off = "Turn Music Off";
+Turn_Music_On = "Turn Music On";

@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 var level: Int! = getLevel()
 var removedAds: Bool! = getRemovedAds()
 var currentChooseAGameView: ChooseAGameView!
 var maxLevel = 95
+var player = AVAudioPlayer()
+var musicOn: Bool!
 
 class ViewController: NumViewController {
     

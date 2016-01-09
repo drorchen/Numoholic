@@ -22,3 +22,5 @@ Restore_Purchases = "שחזר קניות";
 Transaction_Failed = "הקניה נכשלה";
 Ok = "הבנתי";
 Loading = "טעינה";
+Turn_Music_Off = "הפסק מוזיקה";
+Turn_Music_On = "הפעל מוזיקה";

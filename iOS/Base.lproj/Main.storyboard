@@ -885,23 +885,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Poh-VV-vFq">
                                 <rect key="frame" x="35" y="176" width="304" height="415"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-zH-Ah5">
-                                        <rect key="frame" x="8" y="127" width="140" height="140"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="NdC-zH-Ah5" secondAttribute="height" multiplier="1:1" id="DtW-Wf-OPf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="66"/>
-                                        <state key="normal" title="1">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="system" pointSize="200"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="oneButtonPressed:" destination="khV-hX-eIf" eventType="touchUpInside" id="Lpy-Et-z6H"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTd-ku-juK">
                                         <rect key="frame" x="156" y="127" width="140" height="140"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -966,6 +949,23 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-zH-Ah5">
+                                        <rect key="frame" x="8" y="127" width="140" height="140"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="NdC-zH-Ah5" secondAttribute="height" multiplier="1:1" id="DtW-Wf-OPf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="66"/>
+                                        <state key="normal" title="1">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="200"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="oneButtonPressed:" destination="khV-hX-eIf" eventType="touchUpInside" id="Lpy-Et-z6H"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1078,83 +1078,97 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooE-x9-IRR">
-                                <rect key="frame" x="52" y="224" width="272" height="52"/>
-                                <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <state key="normal" title="Reset levels">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetLevelsButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="Iqa-gX-3fN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BL5-td-Ogt">
-                                <rect key="frame" x="52" y="308" width="272" height="52"/>
-                                <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <state key="normal" title="Remove Ads">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="removeAdsButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="aZX-yi-6o1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dju-zN-E1A">
-                                <rect key="frame" x="52" y="392" width="272" height="52"/>
-                                <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <state key="normal" title="Restore Purchases">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="restorePurchasesButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="LcR-th-RPQ"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1B-OK-ROG">
+                                <rect key="frame" x="52" y="266" width="272" height="136"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BL5-td-Ogt">
+                                        <rect key="frame" x="0.0" y="168" width="272" height="52"/>
+                                        <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <state key="normal" title="Remove Ads">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeAdsButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="aZX-yi-6o1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooE-x9-IRR">
+                                        <rect key="frame" x="0.0" y="84" width="272" height="52"/>
+                                        <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <state key="normal" title="Reset levels">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetLevelsButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="Iqa-gX-3fN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vT-N9-vxT">
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="52"/>
+                                        <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <state key="normal" title="Music On">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="musicButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="wDk-bI-Xu6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dju-zN-E1A">
+                                        <rect key="frame" x="0.0" y="252" width="272" height="52"/>
+                                        <color key="backgroundColor" red="0.39954501910000001" green="0.56364766580000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <state key="normal" title="Restore Purchases">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="restorePurchasesButtonPressed:" destination="ca3-CV-F2s" eventType="touchUpInside" id="LcR-th-RPQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="width" secondItem="dju-zN-E1A" secondAttribute="width" id="1oA-l0-Eri"/>
+                                    <constraint firstAttribute="bottom" secondItem="ooE-x9-IRR" secondAttribute="bottom" id="27e-PR-iMI"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="width" secondItem="M1B-OK-ROG" secondAttribute="width" id="2sc-0r-hKB"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="leading" secondItem="ooE-x9-IRR" secondAttribute="leading" id="BWN-co-oOj"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="height" secondItem="ooE-x9-IRR" secondAttribute="height" id="Hzx-We-oUw"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="leading" secondItem="M1B-OK-ROG" secondAttribute="leading" id="JJ8-0a-R9v"/>
+                                    <constraint firstItem="BL5-td-Ogt" firstAttribute="top" secondItem="ooE-x9-IRR" secondAttribute="bottom" constant="32" id="OA9-Su-RHn"/>
+                                    <constraint firstAttribute="bottom" secondItem="dju-zN-E1A" secondAttribute="bottom" id="XVn-sY-A6O"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="height" secondItem="BL5-td-Ogt" secondAttribute="height" id="cY4-NK-T53"/>
+                                    <constraint firstItem="dju-zN-E1A" firstAttribute="top" secondItem="BL5-td-Ogt" secondAttribute="bottom" constant="32" id="d7e-b5-Eps"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="height" secondItem="dju-zN-E1A" secondAttribute="height" id="drY-RV-Edh"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="width" secondItem="ooE-x9-IRR" secondAttribute="width" id="h4L-Ml-Bcm"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="leading" secondItem="dju-zN-E1A" secondAttribute="leading" id="kCQ-Yx-mFW"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="leading" secondItem="BL5-td-Ogt" secondAttribute="leading" id="l7b-aY-AJj"/>
+                                    <constraint firstItem="ooE-x9-IRR" firstAttribute="top" secondItem="1vT-N9-vxT" secondAttribute="bottom" constant="32" id="oBj-Bz-HGC"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="top" secondItem="M1B-OK-ROG" secondAttribute="top" id="tyH-GR-hxO"/>
+                                    <constraint firstItem="1vT-N9-vxT" firstAttribute="width" secondItem="BL5-td-Ogt" secondAttribute="width" id="xlQ-n7-Eir"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.3855977042" green="0.7193788283" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0H3-O3-jiy" firstAttribute="leading" secondItem="1wW-IR-nk2" secondAttribute="leadingMargin" constant="-11" id="17l-C5-g5J"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="width" secondItem="dju-zN-E1A" secondAttribute="width" id="3p2-HH-LTv"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="leading" secondItem="ooE-x9-IRR" secondAttribute="leading" id="DJc-GL-KRd"/>
-                            <constraint firstItem="ooE-x9-IRR" firstAttribute="centerX" secondItem="1wW-IR-nk2" secondAttribute="centerX" id="GiH-fB-E6N"/>
-                            <constraint firstItem="ooE-x9-IRR" firstAttribute="top" secondItem="yFX-Fl-8Fn" secondAttribute="bottom" constant="151" id="Jq7-kR-pSj"/>
                             <constraint firstItem="yFX-Fl-8Fn" firstAttribute="top" secondItem="0H3-O3-jiy" secondAttribute="bottom" id="MEK-b9-4GL"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="height" secondItem="dju-zN-E1A" secondAttribute="height" id="Q9b-Nx-xyd"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="leading" secondItem="dju-zN-E1A" secondAttribute="leading" id="QIU-tb-IMh"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="height" secondItem="ooE-x9-IRR" secondAttribute="height" id="RDN-sw-i4C"/>
-                            <constraint firstItem="ooE-x9-IRR" firstAttribute="centerY" secondItem="1wW-IR-nk2" secondAttribute="centerY" id="TvV-AM-GQ4"/>
-                            <constraint firstItem="ooE-x9-IRR" firstAttribute="centerX" secondItem="1wW-IR-nk2" secondAttribute="centerX" id="UOn-pw-Zne"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="centerX" secondItem="1wW-IR-nk2" secondAttribute="centerX" id="WZv-FD-BQX"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="width" secondItem="ooE-x9-IRR" secondAttribute="width" id="a3c-K0-8lz"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="top" secondItem="ooE-x9-IRR" secondAttribute="bottom" constant="32" id="azD-De-Bo3"/>
-                            <constraint firstItem="BL5-td-Ogt" firstAttribute="centerY" secondItem="1wW-IR-nk2" secondAttribute="centerY" id="c7F-ed-4zx"/>
+                            <constraint firstItem="M1B-OK-ROG" firstAttribute="centerX" secondItem="1wW-IR-nk2" secondAttribute="centerX" id="Z8q-Q0-c5p"/>
                             <constraint firstItem="yFX-Fl-8Fn" firstAttribute="leading" secondItem="1wW-IR-nk2" secondAttribute="leadingMargin" constant="-20" id="fb6-Eb-SJ1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yFX-Fl-8Fn" secondAttribute="trailing" constant="-20" id="gLY-1Q-awv"/>
                             <constraint firstItem="0H3-O3-jiy" firstAttribute="top" secondItem="hKA-6U-b4G" secondAttribute="bottom" constant="5" id="gvl-H6-tHC"/>
-                            <constraint firstItem="nyp-IJ-fWy" firstAttribute="top" secondItem="ooE-x9-IRR" secondAttribute="bottom" constant="370" id="hY9-it-8oB"/>
-                            <constraint firstItem="dju-zN-E1A" firstAttribute="top" secondItem="BL5-td-Ogt" secondAttribute="bottom" constant="32" id="xDE-Gx-MdE"/>
+                            <constraint firstItem="M1B-OK-ROG" firstAttribute="centerY" secondItem="1wW-IR-nk2" secondAttribute="centerY" id="kr7-19-4sq"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="GiH-fB-E6N"/>
-                                <exclude reference="Jq7-kR-pSj"/>
-                                <exclude reference="TvV-AM-GQ4"/>
-                                <exclude reference="UOn-pw-Zne"/>
-                                <exclude reference="hY9-it-8oB"/>
-                            </mask>
-                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="backButton" destination="0H3-O3-jiy" id="uad-dv-mGO"/>
+                        <outlet property="musicButton" destination="1vT-N9-vxT" id="713-H8-S6x"/>
                         <outlet property="removeAdsButton" destination="BL5-td-Ogt" id="rfa-Am-JGg"/>
+                        <outlet property="resetLevelsBottomToSuperViewConstraint" destination="27e-PR-iMI" id="rXb-Ba-HNn"/>
                         <outlet property="resetLevelsButton" destination="ooE-x9-IRR" id="5ue-gc-lQh"/>
                         <outlet property="restorePurchasesButton" destination="dju-zN-E1A" id="m3w-MN-2Ah"/>
                         <outlet property="settingsLabel" destination="yFX-Fl-8Fn" id="XGj-U3-fpd"/>
-                        <outlet property="temporaryConstraint" destination="azD-De-Bo3" id="E26-oQ-a6a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hwe-BU-a5X" userLabel="First Responder" sceneMemberID="firstResponder"/>

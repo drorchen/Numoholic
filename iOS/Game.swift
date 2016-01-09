@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class Game: NSObject {
     var grid: Grid!
     var gridView: UIView!
     var buttons: [UIButton]!
-    var buttonsLeft: Int!
     var currentNumber: Int!
     var startTimer: NSTimer!
     var timerInt: CGFloat!
@@ -24,6 +24,10 @@ class Game: NSObject {
     var target: Int!
     var _level: Level!
     private let switchesGroup = dispatch_group_create()
+    var audioPlayer: AVAudioPlayer!
+    let successClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("successClick", ofType: "mp3")!)
+    //let wrongClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrongClick", ofType: "mp3")!)
+    
     
     init (grid: Grid, level: Level, view: UIView) {
         super.init()
@@ -45,9 +49,10 @@ class Game: NSObject {
         
         gridView = self.grid.createGridView(currentController.view!, label: currentController.levelLabel)
         buttons = self.grid.addButtonsToGridView(gridView, spacingTargets: mode.spacingTargets())
-        self.buttonsLeft = self.buttons.count
         
         setButtons()
+        
+        
     }
 
     func reduceTimerByOne () {
@@ -69,217 +74,164 @@ class Game: NSObject {
     
     func enableAllButtons () {
         for button in buttons {
-            button.enabled = true
+            button.userInteractionEnabled = true
         }
         dispatch_group_leave(switchesGroup)
     }
     
     func disableAllButtons () {
         for button in buttons {
-            button.enabled = false
+            button.userInteractionEnabled = false
         }
         dispatch_group_leave(switchesGroup)
     }
     
-    func switchTwoTiles () {
-        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
-            if self.switchTimes > 0 && self.buttons.count >= 2 {
-                dispatch_group_enter(self.switchesGroup)
-                self.disableAllButtons()
-                
-                dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
-                    if self.buttons.count >= 2 {
-                        self.switchTimes = self.switchTiles(self.twoRandomTiles(), counter: self.switchTimes)
-                        
-                        if self.switchTimes == 0 {
-                            self.switchTimer.invalidate()
-                        }
-                    }
-                        
-                    else {
-                        dispatch_group_enter(self.switchesGroup)
-                        self.enableAllButtons()
-                        self.switchTimer.invalidate()
-                    }
-                }
-            }
+    func getSwitchingVariable () -> Int {
+        if fSwitchTimes > 0 {
+            return 4
         }
-    }
-    
-    func switchThreeTiles () {
-        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
-            if self.tSwitchTimes > 0 && self.buttons.count >= 3 {
-                dispatch_group_enter(self.switchesGroup)
-                self.disableAllButtons()
-                
-                dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
-                    if self.buttons.count >= 3 {
-                        self.tSwitchTimes = self.switchTiles(self.threeRandomTiles(), counter: self.tSwitchTimes)
-                    }
-                        
-                    else {
-                        dispatch_group_enter(self.switchesGroup)
-                        self.enableAllButtons()
-                        self.switchTwoTiles()
-                    }
-                }
-            }
-                
-            else {
-                self.switchTwoTiles()
-            }
+        
+        if tSwitchTimes > 0 {
+            return 3
         }
-    }
-    
-    func switchFourTiles () {
-        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
-            if self.fSwitchTimes > 0 && self.buttons.count >= 4 {
-                dispatch_group_enter(self.switchesGroup)
-                self.disableAllButtons()
-                
-                dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
-                    if self.buttons.count >= 4 {
-                        self.fSwitchTimes = self.switchTiles(self.fourRandomTiles(), counter: self.fSwitchTimes)
-                    }
-                        
-                    else {
-                        dispatch_group_enter(self.switchesGroup)
-                        self.enableAllButtons()
-                        self.switchThreeTiles()
-                    }
-                }
-            }
-                
-            else {
-                self.switchThreeTiles()
-            }
-        }
-    }
-    
-    func switchTiles (tiles: [Int], var counter: Int) -> Int {
-        if counter > 0 && buttons.count >= tiles.count {
-            var framesOfTiles = [CGRect]()
-            for tile in tiles {
-                framesOfTiles.append(buttons[tile].frame)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                UIView.animateWithDuration(0.2, animations: {
-                    for var i = 0; i < tiles.count; i++ {
-                        self.buttons[tiles[i]].backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.8)
-                    }
-                    }, completion: { (value: Bool) in
-                        UIView.animateWithDuration(0.4, animations: {
-                            for var i = 0; i < tiles.count-1; i++ {
-                                self.buttons[tiles[i]].frame = framesOfTiles[i+1]
-                            }
-                            self.buttons[tiles[tiles.count-1]].frame = framesOfTiles[0]
-                            }, completion: { (value: Bool) in
-                                dispatch_group_enter(self.switchesGroup)
-                                self.enableAllButtons()
-                                UIView.animateWithDuration(0.2, animations: {
-                                    for button in self.buttons {
-                                        button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-                                    }
-                                })
-                        })
-                })
-            }
-            
-            
-            counter--
-            return counter
+        
+        if switchTimes > 0 {
+            return 2
         }
         
         return 0
     }
     
-    func twoRandomTiles () -> [Int] {
-        var twoTiles = [Int]()
-        let firstTile = Int(arc4random_uniform(UInt32(buttons.count)))
-        let secondTile = Int(arc4random_uniform(UInt32(buttons.count)))
-        
-        if firstTile == secondTile {
-            return twoRandomTiles()
-        }
+    func decSwitchingVariable (switchItem: Int, full: Bool) {
+        switch (switchItem) {
+        case 2:
+            switchTimes!--
+            if full {
+                switchTimes = 0
+            }
             
-        else {
-            twoTiles.append(firstTile)
-            twoTiles.append(secondTile)
-            return twoTiles
+            if switchTimes == 0 {
+                self.switchTimer.invalidate()
+            }
+            break
+        case 3:
+            tSwitchTimes!--
+            if full {
+                tSwitchTimes = 0
+            }
+            break
+        case 4:
+            fSwitchTimes!--
+            if full {
+                fSwitchTimes = 0
+            }
+            break
+        default:
+            break
         }
     }
     
-    func threeRandomTiles () -> [Int] {
-        var threeTiles = [Int]()
-        var firstTile: Int!
-        var secondTile: Int!
-        var thirdTile: Int!
-        
-        if buttons.count > 3 {
-            firstTile = Int(arc4random_uniform(UInt32(buttons.count)))
-            secondTile = Int(arc4random_uniform(UInt32(buttons.count)))
-            thirdTile = Int(arc4random_uniform(UInt32(buttons.count)))
-        }
+    func switchNumTiles () {
+        dispatch_group_notify(switchesGroup, dispatch_get_main_queue()) {
+            let switchItem = self.getSwitchingVariable()
+            if switchItem != 0 {
+                if self.buttons.count >= switchItem {
+                    dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
+                        dispatch_group_enter(self.switchesGroup)
+                        self.disableAllButtons()
+                    }
+                    
+                    dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
+                        dispatch_group_enter(self.switchesGroup)
+                        if self.buttons.count >= switchItem {
+                            let tiles = self.randomTiles(switchItem)
+                            let max = tiles.maxElement()
+                            
+                            if max < self.buttons.count {
+                                self.switchTiles(tiles, tilesNum: switchItem)
+                            }
+                                
+                            else {
+                                self.switchNumTiles()
+                                dispatch_group_leave(self.switchesGroup)
+                            }
+                        }
+                            
+                        else {
+                            dispatch_group_enter(self.switchesGroup)
+                            self.enableAllButtons()
+                            
+                            self.decSwitchingVariable(switchItem, full: true)
+                            
+                            dispatch_group_leave(self.switchesGroup)
+                        }
+                    }
+                }
+                    
+                else {
+                    self.decSwitchingVariable(switchItem, full: true)
+                }
+            }
             
-        else {
-            firstTile = 0
-            secondTile = 1
-            thirdTile = 2
-        }
-        
-        if firstTile == secondTile || firstTile == thirdTile || secondTile == thirdTile {
-            return threeRandomTiles()
-        }
-            
-        else {
-            threeTiles.append(firstTile)
-            threeTiles.append(secondTile)
-            threeTiles.append(thirdTile)
-            return threeTiles
+            else {
+                self.switchTimer.invalidate()
+            }
         }
     }
     
-    func fourRandomTiles () -> [Int] {
-        var fourTiles = [Int]()
-        var firstTile: Int!
-        var secondTile: Int!
-        var thirdTile: Int!
-        var fourthTile: Int!
-        
-        if buttons.count > 4 {
-            firstTile = Int(arc4random_uniform(UInt32(buttons.count)))
-            secondTile = Int(arc4random_uniform(UInt32(buttons.count)))
-            thirdTile = Int(arc4random_uniform(UInt32(buttons.count)))
-            fourthTile = Int(arc4random_uniform(UInt32(buttons.count)))
-        }
-            
-        else {
-            firstTile = 0
-            secondTile = 1
-            thirdTile = 2
-            fourthTile = 3
+    func switchTiles (tiles: [Int], tilesNum: Int) {
+        var framesOfTiles = [CGRect]()
+        for tile in tiles {
+            framesOfTiles.append(self.buttons[tile].frame)
         }
         
-        if firstTile == secondTile || firstTile == thirdTile || secondTile == thirdTile || firstTile == fourthTile || secondTile == fourthTile || thirdTile == fourthTile {
-            return fourRandomTiles()
+        dispatch_async(dispatch_get_main_queue()) {
+            UIView.animateWithDuration(0.2, animations: {
+                for var i = 0; i < tiles.count; i++ {
+                    self.buttons[tiles[i]].backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.8)
+                }
+                }, completion: { (value: Bool) in
+                    UIView.animateWithDuration(0.4, animations: {
+                        for var i = 0; i < tiles.count-1; i++ {
+                            self.buttons[tiles[i]].frame = framesOfTiles[i+1]
+                        }
+                        self.buttons[tiles[tiles.count-1]].frame = framesOfTiles[0]
+                        }, completion: { (value: Bool) in
+                            dispatch_group_enter(self.switchesGroup)
+                            self.enableAllButtons()
+                            UIView.animateWithDuration(0.2, animations: {
+                                for button in self.buttons {
+                                    button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+                                }
+                                }, completion: { (value: Bool) in
+                                    dispatch_group_leave(self.switchesGroup)
+                            })
+                    })
+            })
         }
-            
-        else {
-            fourTiles.append(firstTile)
-            fourTiles.append(secondTile)
-            fourTiles.append(thirdTile)
-            fourTiles.append(fourthTile)
-            return fourTiles
+        
+        decSwitchingVariable(tilesNum, full: false)
+    }
+    
+    func randomTiles (num: Int) -> [Int] {
+        var randomTiles = [Int]()
+        
+        while randomTiles.count != num {
+            let randNum = Int(arc4random_uniform(UInt32(buttons.count)))
+            if !randomTiles.contains(randNum) {
+                randomTiles.append(randNum)
+            }
         }
+        
+        return randomTiles
     }
     
     func startTheGame () {
         let delay = 1.45 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()) {
-            self.switchFourTiles()
-            self.switchTimer = NSTimer.scheduledTimerWithTimeInterval(2.15, target: self, selector: "switchFourTiles", userInfo: nil, repeats: true)
+            self.switchNumTiles()
+            self.switchTimer = NSTimer.scheduledTimerWithTimeInterval(2.15, target: self, selector: "switchNumTiles", userInfo: nil, repeats: true)
         }
         
         for var i = 0; i < buttons.count; i++ {
@@ -301,23 +253,47 @@ class Game: NSObject {
     }
     
     func clickedAButton (sender: UIButton) {
-        if target == sender.tag {
-            buttons = buttons.filter() { $0 !== sender }
-            sender.enabled = false
-            sender.hidden = true
-            
-            if buttons.count == 0 {
-                nextLevel()
+        dispatch_group_notify(self.switchesGroup, dispatch_get_main_queue()) {
+            dispatch_group_enter(self.switchesGroup)
+            if self.target == sender.tag {
+                self.buttons = self.buttons.filter() { $0 !== sender }
+                sender.enabled = false
+                sender.hidden = true
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: self.successClickSound)
+                    self.audioPlayer.prepareToPlay()
+                    self.audioPlayer.play()
+                }
+                catch {
+                    print(error)
+                }
+                
+                if self.buttons.count == 0 {
+                    self.nextLevel()
+                    dispatch_group_leave(self.switchesGroup)
+                }
+                    
+                else {
+                    self.currentNumber = self.target
+                    self.setTarget()
+                    dispatch_group_leave(self.switchesGroup)
+                }
             }
                 
             else {
-                currentNumber = target
-                setTarget()
+                /*
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: self.wrongClickSound)
+                    self.audioPlayer.prepareToPlay()
+                    self.audioPlayer.play()
+                }
+                catch {
+                    print(error)
+                }
+                */
+                self.wrong()
+                dispatch_group_leave(self.switchesGroup)
             }
-        }
-            
-        else {
-            wrong()
         }
     }
     

@@ -9,6 +9,19 @@
 import UIKit
 import StoreKit
 
+func toggleMusic () {
+    musicOn = !musicOn
+    NSUserDefaults.standardUserDefaults().setObject(musicOn, forKey: "m")
+    NSUserDefaults.standardUserDefaults().synchronize()
+}
+
+func getMusic() -> Bool! {
+    if let value = NSUserDefaults.standardUserDefaults().objectForKey("m") as! Bool? {
+        return value
+    }
+    return nil
+}
+
 class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver, UIActionSheetDelegate {
     var productIDs: Array<String!> = []
     var productsArray: Array<SKProduct!> = []
@@ -20,7 +33,8 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var removeAdsButton: UIButton!
     @IBOutlet weak var restorePurchasesButton: UIButton!
-    @IBOutlet weak var temporaryConstraint: NSLayoutConstraint!
+    @IBOutlet weak var musicButton: UIButton!
+    @IBOutlet weak var resetLevelsBottomToSuperViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +44,32 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
         removeAdsButton.enabled = false
         restorePurchasesButton.enabled = false
         
-        if removedAds! {
-            temporaryConstraint.constant = -removeAdsButton.frame.height
-            removeAdsButton.hidden = true
-            restorePurchasesButton.hidden = true
-            removeAdsButton.setTitle("", forState: UIControlState.Normal)
-            restorePurchasesButton.setTitle("", forState: UIControlState.Normal)
+        if musicOn! {
+            musicButton.setTitle(NSLocalizedString("Turn_Music_Off", comment: "Turn Music Off"), forState: UIControlState.Normal)
         }
         
         else {
+            musicButton.setTitle(NSLocalizedString("Turn_Music_On", comment: "Turn Music On"), forState: UIControlState.Normal)
+        }
+        
+        if removedAds! {
+            removeAdsButton.removeFromSuperview()
+            restorePurchasesButton.removeFromSuperview()
+        }
+        
+        else {
+            if #available(iOS 8.0, *) {
+                resetLevelsBottomToSuperViewConstraint.active = false
+            } else {
+                resetLevelsButton.removeConstraint(resetLevelsBottomToSuperViewConstraint)
+            }
             productIDs.append("numoholic.removeAdsInApp")
             requestProductInfo()
             SKPaymentQueue.defaultQueue().addTransactionObserver(self)
         }
         
         styleTheBackButton(backButton)
+        styleAButton(musicButton)
         styleAButton(resetLevelsButton)
         styleAButton(removeAdsButton)
         styleAButton(restorePurchasesButton)
@@ -146,6 +171,20 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
                 break
             }
         }
+    }
+    
+    @IBAction func musicButtonPressed(sender: AnyObject) {
+        if musicOn! {
+            musicButton.setTitle(NSLocalizedString("Turn_Music_On", comment: "Turn Music On"), forState: UIControlState.Normal)
+            player.stop()
+        }
+        
+        else {
+            musicButton.setTitle(NSLocalizedString("Turn_Music_Off", comment: "Turn Music Off"), forState: UIControlState.Normal)
+            player.play()
+        }
+        
+        toggleMusic()
     }
     
     @IBAction func removeAdsButtonPressed(sender: AnyObject) {
