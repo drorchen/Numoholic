@@ -9,7 +9,7 @@
 import UIKit
 
 class Grid: NSObject {
-    var grid: [[Int]]!
+    var grid: [Position]!
     var x: Int
     var y: Int
     
@@ -19,25 +19,26 @@ class Grid: NSObject {
         super.init()
     }
     
-    convenience init (grid: [[Int]], x: Int, y: Int) {
+    convenience init (grid: [Position], x: Int, y: Int) {
         self.init(x: x, y: y)
         self.grid = grid
     }
     
-    func generateGridLocation () -> [Int] {
+    func generateGridLocation () -> Position {
         let xGrid = Int(arc4random_uniform(UInt32(x)))
         let yGrid = Int(arc4random_uniform(UInt32(y)))
+        let position = Position(x: xGrid, y: yGrid)
         
-        if (grid.contains { $0 == [xGrid,yGrid] }) {
+        if (grid.contains { $0 == position }) {
             return generateGridLocation()
         }
         
         else {
-            return [xGrid, yGrid]
+            return position
         }
     }
     
-    func createGrid () -> [[Int]] {
+    func createGrid () -> [Position] {
         grid = []
         
         while grid.count != x*y {
@@ -63,7 +64,7 @@ class Grid: NSObject {
         
         for var i = 0; i < grid.count; i++ {
             let button = UIButton(type: UIButtonType.System)
-            button.frame = CGRectMake(CGFloat(grid[i][0])*width+space+(width-2*space)/2, CGFloat(grid[i][1])*height+space+(height-2*space)/2, 0, 0)
+            button.frame = CGRectMake(CGFloat(grid[i].x)*width+space+(width-2*space)/2, CGFloat(grid[i].y)*height+space+(height-2*space)/2, 0, 0)
             button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
             button.layer.cornerRadius = min((width-2*space),(height-2*space))/8
             button.setTitle("\(buttonTitle(spacingTargets, buttons: buttons))", forState: UIControlState.Normal)
@@ -76,7 +77,7 @@ class Grid: NSObject {
             buttons.append(button)
             
             UIView.animateWithDuration(0.4, animations: {
-                button.frame = CGRectMake(CGFloat(self.grid[i][0])*width+space, CGFloat(self.grid[i][1])*height+space, width-2*space, height-2*space)
+                button.frame = CGRectMake(CGFloat(self.grid[i].x)*width+space, CGFloat(self.grid[i].y)*height+space, width-2*space, height-2*space)
             })
         }
         

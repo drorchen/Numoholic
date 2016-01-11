@@ -25,8 +25,6 @@ class Game: NSObject {
     var _level: Level!
     private let switchesGroup = dispatch_group_create()
     var audioPlayer: AVAudioPlayer!
-    let successClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("successClick", ofType: "mp3")!)
-    //let wrongClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrongClick", ofType: "mp3")!)
     
     
     init (grid: Grid, level: Level, view: UIView) {
@@ -51,8 +49,6 @@ class Game: NSObject {
         buttons = self.grid.addButtonsToGridView(gridView, spacingTargets: mode.spacingTargets())
         
         setButtons()
-        
-        
     }
 
     func reduceTimerByOne () {
@@ -260,7 +256,7 @@ class Game: NSObject {
                 sender.enabled = false
                 sender.hidden = true
                 do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: self.successClickSound)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: successClickSound)
                     self.audioPlayer.prepareToPlay()
                     self.audioPlayer.play()
                 }
@@ -281,16 +277,15 @@ class Game: NSObject {
             }
                 
             else {
-                /*
                 do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: self.wrongClickSound)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: wrongClickSound)
                     self.audioPlayer.prepareToPlay()
                     self.audioPlayer.play()
                 }
                 catch {
                     print(error)
                 }
-                */
+                
                 self.wrong()
                 dispatch_group_leave(self.switchesGroup)
             }

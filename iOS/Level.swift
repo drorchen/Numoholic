@@ -9,7 +9,7 @@
 import UIKit
 
 class Level: NSObject {
-    var grid: [[Int]]!
+    var grid: [Position]!
     var x: Int!
     var y: Int!
     var timer: CGFloat!
@@ -31,9 +31,9 @@ class Level: NSObject {
     func createLevel (xGrid: Int, yGrid: Int, timerInt: CGFloat, switchesNum: Int, tSwitchesNum: Int, fSwitchesNum: Int, mode: Int) -> Grid {
         switch level {
         case 0:
-            x = xGrid > 6 ? 6 : xGrid
-            y = yGrid > 6 ? 6 : yGrid
-            timer = timer > 25 ? 25 : timerInt
+            x = xGrid
+            y = yGrid
+            timer = timerInt
             switchTimes = switchesNum
             tSwitchTimes = tSwitchesNum
             fSwitchTimes = fSwitchesNum
@@ -45,14 +45,14 @@ class Level: NSObject {
         
         case 1:
             // [[0,0], [0,1], [1,0], [1,1]]
-            grid = [[0,0],[0,1],[1,0],[1,1]]
+            grid = [Position(x: 0, y: 0), Position(x: 0, y: 1), Position(x: 1, y: 0), Position(x: 1, y: 1)]
             x = 2
             y = 2
             timer = 1.5
             break
             
         case 2:
-            grid = [[0,1],[0,0],[1,1],[1,0]]
+            grid = [Position(x: 0, y: 1), Position(x: 0, y: 0), Position(x: 1, y: 1), Position(x: 1, y: 0)]
             x = 2
             y = 2
             timer = 1.5
@@ -60,14 +60,14 @@ class Level: NSObject {
             
         case 3:
             // [[0,0], [0,1], [0,2], [1,0], [1,1], [1,2]]
-            grid = [[1,2], [0,0], [0,2], [1,0], [0,1], [1,1]]
+            grid = [Position(x: 1, y: 2), Position(x: 0, y: 0), Position(x: 0, y: 2), Position(x: 1, y: 0), Position(x: 0, y: 1), Position(x: 1, y: 1)]
             x = 2
             y = 3
             timer = 1.2
             break
             
         case 4:
-            grid = [[0,0], [1,2], [1,0], [0,2], [1,1], [0,1]]
+            grid = [Position(x: 0, y: 0), Position(x: 1, y: 2), Position(x: 1, y: 0), Position(x: 0, y: 2), Position(x: 1, y: 1), Position(x: 0, y: 1)]
             x = 2
             y = 3
             timer = 1.2
