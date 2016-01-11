@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AudioToolbox
 
 class GenerateView: NumViewController {
 
@@ -220,7 +219,6 @@ class GenerateView: NumViewController {
                         if let tSwitchesNum = Int(tSwitchesTextField.text!) {
                             if let fSwitchesNum = Int(fSwitchesTextField.text!) {
                                 if randomTargetsSwitch.on || modeSegmentedControl.selectedSegmentIndex != -1 {
-                                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                                     let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
                                     nextViewController.level = 0

@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import AudioToolbox
 
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 var level: Int! = getLevel()
