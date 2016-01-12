@@ -24,25 +24,26 @@ class Grid: NSObject {
         self.grid = grid
     }
     
-    func generateGridLocation () -> Position {
-        let xGrid = Int(arc4random_uniform(UInt32(x)))
-        let yGrid = Int(arc4random_uniform(UInt32(y)))
-        let position = Position(x: xGrid, y: yGrid)
+    func generateAllPossiblePositions () -> [Position] {
+        var possiblePositions = [Position]()
         
-        if (grid.contains { $0 == position }) {
-            return generateGridLocation()
+        for var i = 0; i < x; i++ {
+            for var j = 0; j < y; j++ {
+                possiblePositions.append(Position(x: i, y: j))
+            }
         }
         
-        else {
-            return position
-        }
+        return possiblePositions
     }
     
     func createGrid () -> [Position] {
         grid = []
+        var allPossiblePositions = generateAllPossiblePositions()
         
         while grid.count != x*y {
-            grid.append(generateGridLocation())
+            let randNum = Int(arc4random_uniform(UInt32(allPossiblePositions.count)))
+            grid.append(allPossiblePositions[randNum])
+            allPossiblePositions = allPossiblePositions.filter() { $0 !== allPossiblePositions[randNum] }
         }
         
         return grid

@@ -24,3 +24,5 @@ Ok = "הבנתי";
 Loading = "טעינה";
 Turn_Music_Off = "הפסק מוזיקה";
 Turn_Music_On = "הפעל מוזיקה";
+Turn_Sound_Effects_Off = "הפסק קול";
+Turn_Sound_Effects_On = "הפעל קול";

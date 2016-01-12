@@ -57,6 +57,8 @@ class ChooseAGameView: NumViewController {
     }
     
     @IBAction func levelButtonPreseed(sender: AnyObject) {
+        playASound(guiClickSound)
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView
         nextViewController.level = level
@@ -64,12 +66,16 @@ class ChooseAGameView: NumViewController {
     }
     
     @IBAction func chooseButtonPressed(sender: AnyObject) {
+        playASound(guiClickSound)
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ChooseView") as! ChooseView
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     @IBAction func generateButtonPressed(sender: AnyObject) {
+        playASound(guiClickSound)
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GenerateView") as! GenerateView
         navigationController?.pushViewController(nextViewController, animated: true)

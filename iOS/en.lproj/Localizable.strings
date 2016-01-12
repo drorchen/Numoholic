@@ -24,3 +24,5 @@ Ok = "Ok";
 Loading = "Loading";
 Turn_Music_Off = "Turn Music Off";
 Turn_Music_On = "Turn Music On";
+Turn_Sound_Effects_Off = "Turn Sound Off";
+Turn_Sound_Effects_On = "Turn Sound On";

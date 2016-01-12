@@ -1,6 +1,11 @@
+/* Class = "UIButton"; normalTitle = "Music On"; ObjectID = "1vT-N9-vxT"; */
+"1vT-N9-vxT.normalTitle" = "הפעל מוזיקה";
+
+/* Class = "UIButton"; normalTitle = "Sound On"; ObjectID = "80h-zY-4KR"; */
+"80h-zY-4KR.normalTitle" = "הפעל קול";
 
 /* Class = "UIButton"; normalTitle = "←"; ObjectID = "0H3-O3-jiy"; */
-"0H3-O3-jiy.normalTitle" = "←";
+"0H3-O3-jiy.normalTitle" = "→";
 
 /* Class = "UIButton"; normalTitle = "+"; ObjectID = "2Zh-Le-ovN"; */
 "2Zh-Le-ovN.normalTitle" = "+";
@@ -21,7 +26,7 @@
 "6G6-NB-3ka.normalTitle" = "שחק";
 
 /* Class = "UIButton"; normalTitle = "←"; ObjectID = "6a2-Oj-jgk"; */
-"6a2-Oj-jgk.normalTitle" = "←";
+"6a2-Oj-jgk.normalTitle" = "→";
 
 /* Class = "UIButton"; normalTitle = "-"; ObjectID = "BGM-hZ-OkU"; */
 "BGM-hZ-OkU.normalTitle" = "-";
@@ -54,7 +59,7 @@
 "QNK-50-omu.normalTitle" = "+";
 
 /* Class = "UIButton"; normalTitle = "←"; ObjectID = "QtI-Qs-tvJ"; */
-"QtI-Qs-tvJ.normalTitle" = "←";
+"QtI-Qs-tvJ.normalTitle" = "→";
 
 /* Class = "UISegmentedControl"; RQ1-zE-VYY.segmentTitles[0] = "סדר עולה"; ObjectID = "RQ1-zE-VYY"; */
 "RQ1-zE-VYY.segmentTitles[0]" = "סדר עולה";
@@ -66,7 +71,7 @@
 "Rtz-a2-ua7.normalTitle" = "שחק";
 
 /* Class = "UIButton"; normalTitle = "←"; ObjectID = "SGF-Mx-Hb3"; */
-"SGF-Mx-Hb3.normalTitle" = "←";
+"SGF-Mx-Hb3.normalTitle" = "→";
 
 /* Class = "UIButton"; normalTitle = "-"; ObjectID = "SvT-JS-ioR"; */
 "SvT-JS-ioR.normalTitle" = "-";
@@ -90,7 +95,7 @@
 "cxq-e8-3Uq.normalTitle" = "+";
 
 /* Class = "UIButton"; normalTitle = "←"; ObjectID = "dgd-60-UuW"; */
-"dgd-60-UuW.normalTitle" = "←";
+"dgd-60-UuW.normalTitle" = "→";
 
 /* Class = "UIButton"; normalTitle = "שחזר קניות"; ObjectID = "dju-zN-E1A"; */
 "dju-zN-E1A.normalTitle" = "שחזר קניות";
@@ -102,7 +107,7 @@
 "i0C-4d-mqx.normalTitle" = "איך משחקים";
 
 /* Class = "UIButton"; normalTitle = "←"; ObjectID = "ijo-IN-65Y"; */
-"ijo-IN-65Y.normalTitle" = "←";
+"ijo-IN-65Y.normalTitle" = "→";
 
 /* Class = "UIButton"; normalTitle = "שלב 1"; ObjectID = "ioq-J2-3Nt"; */
 "ioq-J2-3Nt.normalTitle" = "שלב 1";
@@ -139,3 +144,4 @@
 
 /* Class = "UIButton"; normalTitle = "4"; ObjectID = "zE4-Ak-yCq"; */
 "zE4-Ak-yCq.normalTitle" = "4";
+

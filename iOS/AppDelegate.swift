@@ -33,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 toggleMusic()
             }
             
+            if soundEffectsOn == nil {
+                soundEffectsOn = false
+                toggleSoundEffects()
+            }
+            
             if musicOn! {
                 player.play()
             }

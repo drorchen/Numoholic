@@ -19,12 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1024V2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Du5-na-dZJ">
-                                <rect key="frame" x="56" y="201" width="264" height="264"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Du5-na-dZJ" secondAttribute="height" multiplier="1:1" id="2Ff-aW-MAk"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numoholic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="KuP-uS-biQ">
                                 <rect key="frame" x="56" y="-46" width="264" height="239"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="200"/>
@@ -45,6 +39,12 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1024V2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Du5-na-dZJ">
+                                <rect key="frame" x="56" y="201" width="264" height="264"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Du5-na-dZJ" secondAttribute="height" multiplier="1:1" id="2Ff-aW-MAk"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.3855977042" green="0.7193788283" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

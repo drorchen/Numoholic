@@ -78,6 +78,7 @@ class ChooseView: NumViewController {
     }
     
     func chosenLevel (sender: AnyObject) {
+        playASound(guiClickSound)
         let level = sender.tag
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as! GameView

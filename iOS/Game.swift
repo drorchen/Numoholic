@@ -24,7 +24,6 @@ class Game: NSObject {
     var target: Int!
     var _level: Level!
     private let switchesGroup = dispatch_group_create()
-    var audioPlayer: AVAudioPlayer!
     
     
     init (grid: Grid, level: Level, view: UIView) {
@@ -255,14 +254,8 @@ class Game: NSObject {
                 self.buttons = self.buttons.filter() { $0 !== sender }
                 sender.enabled = false
                 sender.hidden = true
-                do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: successClickSound)
-                    self.audioPlayer.prepareToPlay()
-                    self.audioPlayer.play()
-                }
-                catch {
-                    print(error)
-                }
+                
+                playASound(successClickSound)
                 
                 if self.buttons.count == 0 {
                     self.nextLevel()
@@ -277,14 +270,7 @@ class Game: NSObject {
             }
                 
             else {
-                do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: wrongClickSound)
-                    self.audioPlayer.prepareToPlay()
-                    self.audioPlayer.play()
-                }
-                catch {
-                    print(error)
-                }
+                playASound(wrongClickSound)
                 
                 self.wrong()
                 dispatch_group_leave(self.switchesGroup)
