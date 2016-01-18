@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class TutorialView: NumViewController {
     
@@ -19,7 +18,6 @@ class TutorialView: NumViewController {
     @IBOutlet weak var tutorialText: UILabel!
     @IBOutlet weak var howToPlayLabel: UILabel!
     var number: Int!
-    var audioPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,14 +47,7 @@ class TutorialView: NumViewController {
         if number == 1 {
             number!++
             
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: successClickSound)
-                self.audioPlayer.prepareToPlay()
-                self.audioPlayer.play()
-            }
-            catch {
-                print(error)
-            }
+            playASound(successClickSound)
             
             oneButton.alpha = 0
             oneButton.enabled = false
@@ -69,14 +60,7 @@ class TutorialView: NumViewController {
         if number == 2 {
             number!++
             
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: successClickSound)
-                self.audioPlayer.prepareToPlay()
-                self.audioPlayer.play()
-            }
-            catch {
-                print(error)
-            }
+            playASound(successClickSound)
             
             twoButton.alpha = 0
             twoButton.enabled = false
@@ -89,14 +73,7 @@ class TutorialView: NumViewController {
         if number == 3 {
             number!++
             
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: successClickSound)
-                self.audioPlayer.prepareToPlay()
-                self.audioPlayer.play()
-            }
-            catch {
-                print(error)
-            }
+            playASound(successClickSound)
             
             threeButton.alpha = 0
             threeButton.enabled = false
@@ -109,14 +86,7 @@ class TutorialView: NumViewController {
         if number == 4 {
             number!++
             
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: successClickSound)
-                self.audioPlayer.prepareToPlay()
-                self.audioPlayer.play()
-            }
-            catch {
-                print(error)
-            }
+            playASound(successClickSound)
             
             fourButton.alpha = 0
             fourButton.enabled = false

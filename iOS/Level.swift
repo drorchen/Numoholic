@@ -18,6 +18,7 @@ class Level: NSObject {
     var tSwitchTimes: Int
     var fSwitchTimes: Int
     var mode: Int
+    var randomNumbers: Bool
     
     init (level: Int) {
         self.level = level
@@ -25,10 +26,11 @@ class Level: NSObject {
         tSwitchTimes = 0
         fSwitchTimes = 0
         mode = 1
+        randomNumbers = false
         super.init()
     }
     
-    func createLevel (xGrid: Int, yGrid: Int, timerInt: CGFloat, switchesNum: Int, tSwitchesNum: Int, fSwitchesNum: Int, mode: Int) -> Grid {
+    func createLevel (xGrid: Int, yGrid: Int, timerInt: CGFloat, switchesNum: Int, tSwitchesNum: Int, fSwitchesNum: Int, mode: Int, randomNumbers: Bool) -> Grid {
         switch level {
         case 0:
             x = xGrid
@@ -38,6 +40,7 @@ class Level: NSObject {
             tSwitchTimes = tSwitchesNum
             fSwitchTimes = fSwitchesNum
             self.mode = mode
+            self.randomNumbers = randomNumbers
             
             let customGrid = Grid(x: self.x, y: self.y)
             grid = customGrid.createGrid()
@@ -178,7 +181,7 @@ class Level: NSObject {
                     timer = 3.5
                     difLevel = 66
                     tSwitchTimes = 1
-                    self.mode = 4
+                    self.randomNumbers = true
                 }
                     
                 else if level == 76 {
@@ -186,7 +189,8 @@ class Level: NSObject {
                     y = 3
                     timer = 4.0
                     difLevel = 76
-                    self.mode = 5
+                    self.mode = 2
+                    self.randomNumbers = true
                 }
                     
                 else if level >= 77 && level <= 85 {
@@ -195,7 +199,8 @@ class Level: NSObject {
                     timer = 3.0
                     difLevel = 76
                     fSwitchTimes = 1
-                    self.mode = 6
+                    self.mode = 3
+                    self.randomNumbers = true
                 }
                     
                 else if level == 86 {
@@ -204,7 +209,8 @@ class Level: NSObject {
                     timer = 4.5
                     difLevel = 76
                     switchTimes = 1
-                    self.mode = 5
+                    self.mode = 2
+                    self.randomNumbers = true
                 }
                     
                 else if level >= 87 && level <= 95 {

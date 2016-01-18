@@ -16,8 +16,35 @@ var currentChooseAGameView: ChooseAGameView!
 var maxLevel = 95
 var player = AVAudioPlayer()
 var musicOn: Bool!
+var soundEffectsOn: Bool! = getSoundEffects()
+var audioPlayer: AVAudioPlayer!
 let successClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("successClick", ofType: "mp3")!)
 let wrongClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrongClick", ofType: "mp3")!)
+//let guiClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("guiClick", ofType: "mp3")!)
+let guiClickSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrongClick", ofType: "mp3")!)
+
+func playASound (sound: NSURL) {
+    if soundEffectsOn! {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: sound)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        catch {
+            print(error)
+        }
+    }
+}
+
+func prepareSound (sound: NSURL) {
+    do {
+        audioPlayer = try AVAudioPlayer(contentsOfURL: sound)
+        audioPlayer.prepareToPlay()
+    }
+    catch {
+        print(error)
+    }
+}
 
 class ViewController: NumViewController {
     
@@ -37,6 +64,8 @@ class ViewController: NumViewController {
         styleAButton(playButton)
         styleAButton(howToPlayButton)
         styleAButton(settingsButton)
+        
+        prepareSound(guiClickSound)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -53,7 +82,8 @@ class ViewController: NumViewController {
         }
         
         else {
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            playASound(guiClickSound)
+            
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ChooseAGameView") as! ChooseAGameView
             navigationController?.pushViewController(nextViewController, animated: true)
@@ -61,14 +91,16 @@ class ViewController: NumViewController {
     }
     
     @IBAction func howToPlayButtonPressed(sender: AnyObject) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        playASound(guiClickSound)
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TutorialView") as! TutorialView
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        playASound(guiClickSound)
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SettingsView") as! SettingsView
         navigationController?.pushViewController(nextViewController, animated: true)

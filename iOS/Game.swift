@@ -21,6 +21,7 @@ class Game: NSObject {
     var fSwitchTimes: Int!
     var switchTimer: NSTimer!
     var mode: Mode!
+    var randomNumbers: Bool!
     var target: Int!
     var _level: Level!
     private let switchesGroup = dispatch_group_create()
@@ -35,6 +36,7 @@ class Game: NSObject {
         self.switchTimes = self._level.switchTimes
         self.tSwitchTimes = self._level.tSwitchTimes
         self.fSwitchTimes = self._level.fSwitchTimes
+        self.randomNumbers = self._level.randomNumbers
         self.mode = Mode(mode: self._level.mode)
         currentNumber = 0
         target = self.mode.setModeTitle(self)
@@ -45,7 +47,7 @@ class Game: NSObject {
         startTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "reduceTimerByOne", userInfo: nil, repeats: true)
         
         gridView = self.grid.createGridView(currentController.view!, label: currentController.levelLabel)
-        buttons = self.grid.addButtonsToGridView(gridView, spacingTargets: mode.spacingTargets())
+        buttons = self.grid.addButtonsToGridView(gridView, randomNumbers: randomNumbers, mode: mode.mode)
         
         setButtons()
     }
@@ -279,7 +281,7 @@ class Game: NSObject {
     }
     
     func setTarget() {
-        target = mode.newTarget(self)
+        target = buttons[0].tag
         setTitle("\(NSLocalizedString("Target", comment: "target")): \(target)")
     }
     

@@ -22,6 +22,7 @@ class GameView: NumViewController {
     var tSwitches: Int!
     var fSwitches: Int!
     var mode: Int!
+    var randomNumbers: Bool!
     var gameLoaded: Bool! = false
     
     override func viewDidLoad() {
@@ -40,13 +41,13 @@ class GameView: NumViewController {
         if !gameLoaded! {
             if level > 0 {
                 let currentLevel = Level(level: self.level)
-                game = Game (grid: currentLevel.createLevel(0, yGrid: 0, timerInt: 0, switchesNum: 0, tSwitchesNum: 0, fSwitchesNum: 0, mode: 0), level: currentLevel, view: self.view)
+                game = Game (grid: currentLevel.createLevel(0, yGrid: 0, timerInt: 0, switchesNum: 0, tSwitchesNum: 0, fSwitchesNum: 0, mode: 0, randomNumbers: false), level: currentLevel, view: self.view)
                 gameLoaded = true
             }
                 
             else {
                 let currentLevel = Level(level: 0)
-                game = Game (grid: currentLevel.createLevel(self.xGrid, yGrid: self.yGrid, timerInt: self.timer, switchesNum: self.switches, tSwitchesNum: self.tSwitches, fSwitchesNum: self.fSwitches, mode: self.mode), level: currentLevel, view: self.view)
+                game = Game (grid: currentLevel.createLevel(self.xGrid, yGrid: self.yGrid, timerInt: self.timer, switchesNum: self.switches, tSwitchesNum: self.tSwitches, fSwitchesNum: self.fSwitches, mode: self.mode, randomNumbers: randomNumbers), level: currentLevel, view: self.view)
                 gameLoaded = true
             }
             

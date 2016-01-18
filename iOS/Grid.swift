@@ -56,7 +56,7 @@ class Grid: NSObject {
         return gridView
     }
     
-    func addButtonsToGridView (gridView: UIView, spacingTargets: Bool) -> [UIButton] {
+    func addButtonsToGridView (gridView: UIView, randomNumbers: Bool, mode: Int) -> [UIButton] {
         let width = gridView.frame.width / CGFloat(x)
         let height = gridView.frame.height / CGFloat(y)
         let space = gridView.frame.width/121.666666666667
@@ -68,7 +68,7 @@ class Grid: NSObject {
             button.frame = CGRectMake(CGFloat(grid[i].x)*width+space+(width-2*space)/2, CGFloat(grid[i].y)*height+space+(height-2*space)/2, 0, 0)
             button.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
             button.layer.cornerRadius = min((width-2*space),(height-2*space))/8
-            button.setTitle("\(buttonTitle(spacingTargets, buttons: buttons))", forState: UIControlState.Normal)
+            button.setTitle("\(buttonTitle(randomNumbers, buttons: buttons))", forState: UIControlState.Normal)
             button.titleLabel!.font = UIFont.systemFontOfSize(min((width-2*space),(height-2*space))/2.41911764705882)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.titleLabel!.adjustsFontSizeToFitWidth = true
@@ -82,7 +82,20 @@ class Grid: NSObject {
             })
         }
         
-        return buttons
+        if randomNumbers {
+            buttons = buttons.sort {
+                return Int($0.titleLabel!.text!)! < Int($1.titleLabel!.text!)!
+            }
+        }
+        
+        switch mode {
+        case 2:
+            return shuffle(buttons)
+        case 3:
+            return buttons.reverse()
+        default:
+            return buttons
+        }
     }
     
     func buttonTitle (random: Bool, buttons: [UIButton]) -> Int {
@@ -99,4 +112,16 @@ class Grid: NSObject {
         
         return buttonTitle(true, buttons: buttons)
     }
+}
+
+func shuffle<C: MutableCollectionType where C.Index == Int>(var list: C) -> C {
+    let c = list.count
+    if c < 2 { return list }
+    for i in 0..<(c - 1) {
+        let j = Int(arc4random_uniform(UInt32(c - i))) + i
+        if i != j {
+            swap(&list[i], &list[j])
+        }
+    }
+    return list
 }

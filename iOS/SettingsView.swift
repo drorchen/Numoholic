@@ -15,6 +15,19 @@ func toggleMusic () {
     NSUserDefaults.standardUserDefaults().synchronize()
 }
 
+func toggleSoundEffects () {
+    soundEffectsOn = !soundEffectsOn
+    NSUserDefaults.standardUserDefaults().setObject(soundEffectsOn, forKey: "s")
+    NSUserDefaults.standardUserDefaults().synchronize()
+}
+
+func getSoundEffects() -> Bool! {
+    if let value = NSUserDefaults.standardUserDefaults().objectForKey("s") as! Bool? {
+        return value
+    }
+    return nil
+}
+
 func getMusic() -> Bool! {
     if let value = NSUserDefaults.standardUserDefaults().objectForKey("m") as! Bool? {
         return value
@@ -34,6 +47,7 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
     @IBOutlet weak var removeAdsButton: UIButton!
     @IBOutlet weak var restorePurchasesButton: UIButton!
     @IBOutlet weak var musicButton: UIButton!
+    @IBOutlet weak var soundEffectsButton: UIButton!
     @IBOutlet weak var resetLevelsBottomToSuperViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -47,9 +61,17 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
         if musicOn! {
             musicButton.setTitle(NSLocalizedString("Turn_Music_Off", comment: "Turn Music Off"), forState: UIControlState.Normal)
         }
-        
+            
         else {
             musicButton.setTitle(NSLocalizedString("Turn_Music_On", comment: "Turn Music On"), forState: UIControlState.Normal)
+        }
+        
+        if soundEffectsOn! {
+            soundEffectsButton.setTitle(NSLocalizedString("Turn_Sound_Effects_Off", comment: "Turn Sound Effects Off"), forState: UIControlState.Normal)
+        }
+            
+        else {
+            soundEffectsButton.setTitle(NSLocalizedString("Turn_Sound_Effects_On", comment: "Turn Sound Effects On"), forState: UIControlState.Normal)
         }
         
         if removedAds! {
@@ -70,6 +92,7 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
         
         styleTheBackButton(backButton)
         styleAButton(musicButton)
+        styleAButton(soundEffectsButton)
         styleAButton(resetLevelsButton)
         styleAButton(removeAdsButton)
         styleAButton(restorePurchasesButton)
@@ -172,8 +195,9 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
             }
         }
     }
-    
     @IBAction func musicButtonPressed(sender: AnyObject) {
+        playASound(guiClickSound)
+        
         if musicOn! {
             musicButton.setTitle(NSLocalizedString("Turn_Music_On", comment: "Turn Music On"), forState: UIControlState.Normal)
             player.stop()
@@ -187,7 +211,23 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
         toggleMusic()
     }
     
+    @IBAction func soundEffectsButtonPressed(sender: AnyObject) {
+        playASound(guiClickSound)
+        
+        if soundEffectsOn! {
+            soundEffectsButton.setTitle(NSLocalizedString("Turn_Sound_Effects_On", comment: "Turn Sound Effects On"), forState: UIControlState.Normal)
+        }
+            
+        else {
+            soundEffectsButton.setTitle(NSLocalizedString("Turn_Sound_Effects_Off", comment: "Turn Sound Effects Off"), forState: UIControlState.Normal)
+        }
+        
+        toggleSoundEffects()
+    }
+    
     @IBAction func removeAdsButtonPressed(sender: AnyObject) {
+        playASound(guiClickSound)
+        
         selectedProductIndex = 0
         
         if transactionInProgress {
@@ -231,6 +271,8 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
     }
     
     @IBAction func restorePurchasesButtonPressed(sender: UIButton) {
+        playASound(guiClickSound)
+        
         if (SKPaymentQueue.canMakePayments()) {
             sender.enabled = false
             SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
@@ -244,6 +286,7 @@ class SettingsView: NumViewController, SKProductsRequestDelegate, SKPaymentTrans
     }
     
     @IBAction func resetLevelsButtonPressed(sender: AnyObject) {
+        playASound(guiClickSound)
         saveAndEncryptUserDefaults("l", hash: "lH", item: "\(1)")
         level = 1
     }

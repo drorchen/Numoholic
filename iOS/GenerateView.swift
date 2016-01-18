@@ -230,14 +230,8 @@ class GenerateView: NumViewController {
                                     nextViewController.switches = switchesNum
                                     nextViewController.tSwitches = tSwitchesNum
                                     nextViewController.fSwitches = fSwitchesNum
-                                    
-                                    if randomNumbersSwitch.on {
-                                        nextViewController.mode = randomTargetsSwitch.on ? 5 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 4 : 6
-                                    }
-                                    
-                                    else {
-                                        nextViewController.mode = randomTargetsSwitch.on ? 2 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 1 : 3
-                                    }
+                                    nextViewController.mode = randomTargetsSwitch.on ? 2 : (modeSegmentedControl.selectedSegmentIndex == 0) ? 1 : 3
+                                    nextViewController.randomNumbers = randomNumbersSwitch.on
                                     
                                     navigationController?.pushViewController(nextViewController, animated: true)
                                 }
