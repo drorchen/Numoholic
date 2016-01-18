@@ -82,7 +82,11 @@ class Grid: NSObject {
             })
         }
         
-        if randomNumbers {
+        if randomNumbers && mode == 2 {
+            return buttons
+        }
+        
+        else if randomNumbers {
             buttons = buttons.sort {
                 return Int($0.titleLabel!.text!)! < Int($1.titleLabel!.text!)!
             }
