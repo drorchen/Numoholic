@@ -20,7 +20,7 @@ class Game: NSObject {
     var tSwitchTimes: Int!
     var fSwitchTimes: Int!
     var switchTimer: NSTimer!
-    var mode: Mode!
+    var mode: Int!
     var randomNumbers: Bool!
     var target: Int!
     var _level: Level!
@@ -37,9 +37,9 @@ class Game: NSObject {
         self.tSwitchTimes = self._level.tSwitchTimes
         self.fSwitchTimes = self._level.fSwitchTimes
         self.randomNumbers = self._level.randomNumbers
-        self.mode = Mode(mode: self._level.mode)
+        self.mode = self._level.mode
         currentNumber = 0
-        target = self.mode.setModeTitle(self)
+        target = setModeTitle()
         
         let currentController = currentViewController()!
         
@@ -47,7 +47,7 @@ class Game: NSObject {
         startTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "reduceTimerByOne", userInfo: nil, repeats: true)
         
         gridView = self.grid.createGridView(currentController.view!, label: currentController.levelLabel)
-        buttons = self.grid.addButtonsToGridView(gridView, randomNumbers: randomNumbers, mode: mode.mode)
+        buttons = self.grid.addButtonsToGridView(gridView, randomNumbers: randomNumbers, mode: mode)
         
         setButtons()
     }
@@ -362,6 +362,24 @@ class Game: NSObject {
         else {
             currentController.backButtonPressed(UIButton())
         }
+    }
+    
+    func setModeTitle () -> Int {
+        switch mode {
+        case 1:
+            setTitle(NSLocalizedString("ASC", comment: "Ascending"))
+            
+        case 2:
+            setTitle(NSLocalizedString("RAND", comment: "Random"))
+            
+        case 3:
+            setTitle(NSLocalizedString("DESC", comment: "Descending"))
+            
+        default:
+            setTitle(NSLocalizedString("ASC", comment: "Ascending"))
+        }
+        
+        return 0
     }
     
     func currentViewController () -> GameView? {
